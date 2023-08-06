@@ -138,7 +138,11 @@ export default function App() {
     <NavigationContainer>
       <View style={styles.container}>
         <TouchableOpacity onPress={connect}>
-          <Text>연결</Text>
+          {phantomWalletPublicKey ? (
+            <Text>연결</Text>
+          ) : (
+            <Text>{phantomWalletPublicKey}</Text>
+          )}
         </TouchableOpacity>
       </View>
     </NavigationContainer>
