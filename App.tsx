@@ -6,6 +6,7 @@ import * as Linking from "expo-linking";
 import bs58 from "bs58";
 import useStore from "./store";
 import nacl from "tweetnacl";
+import { Buffer } from "buffer";
 import React, {
   Component,
   useCallback,
@@ -138,10 +139,12 @@ export default function App() {
     <NavigationContainer>
       <View style={styles.container}>
         <TouchableOpacity onPress={connect}>
-          {phantomWalletPublicKey ? (
+          {phantomWalletPublicKey == null ? (
             <Text>연결</Text>
           ) : (
-            <Text>{phantomWalletPublicKey}</Text>
+            <Text style={{ color: "black" }}>
+              {phantomWalletPublicKey.toBase58()}
+            </Text>
           )}
         </TouchableOpacity>
       </View>
