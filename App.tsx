@@ -7,6 +7,7 @@ import {
   Text,
   View,
   Image,
+  Clipboard,
 } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
@@ -152,7 +153,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {phantomWalletPublicKey != null ? (
+      {phantomWalletPublicKey == null ? (
         <View style={styles.container}>
           <View style={styles.rows}>
             <Image

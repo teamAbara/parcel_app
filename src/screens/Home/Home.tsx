@@ -7,6 +7,8 @@ import {
   ScrollView,
   RefreshControl,
   Button,
+  Clipboard,
+  TouchableOpacity,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -28,7 +30,11 @@ const HomeScreen = ({ navigation }: any) => {
     fetchData(); // 예시로 fetchData 함수를 호출하여 데이터를 갱신
     setRefreshing(false);
   };
-
+  //주소 복사
+  const handleCopyText = () => {
+    Clipboard.setString(`${user}`);
+    alert("주소 복사 완료");
+  };
   return (
     <ScrollView
       style={styles.container}
@@ -44,7 +50,12 @@ const HomeScreen = ({ navigation }: any) => {
       ))}
 
       <View style={styles.header}>
-        <Text style={styles.header_address}>{user}</Text>
+        <TouchableOpacity
+          style={styles.header_address}
+          onPress={handleCopyText}
+        >
+          <Text numberOfLines={1}>{user}</Text>
+        </TouchableOpacity>
         <MaterialIcons
           style={styles.header_profile}
           size={30}
@@ -87,11 +98,18 @@ const styles = StyleSheet.create({
   },
   header_address: {
     flex: 14,
+    borderRadius: 30,
+    height: 30,
+    padding: 4,
     textAlign: "center",
-
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#ff506e",
     flexDirection: "column",
   },
   header_profile: {
+    textAlign: "center",
+
     flex: 2,
     flexDirection: "column",
   },
