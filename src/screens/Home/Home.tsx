@@ -106,12 +106,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#ff506e",
     flexDirection: "column",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 1,
+      height: 3,
+    },
+    shadowOpacity: 0.6,
+    shadowRadius: 4.84,
   },
   header_profile: {
     textAlign: "center",
 
     flex: 2,
     flexDirection: "column",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 1,
+      height: 3,
+    },
+    shadowOpacity: 0.6,
+    shadowRadius: 4.84,
   },
   rows: {
     marginTop: 20,
