@@ -34,9 +34,9 @@ import {
   SystemProgram,
   Transaction,
 } from "@solana/web3.js";
-
+import HomeStack from "./src/stack/Home";
 /* scrreens */
-import HomeScreen from "./src/screens/Home";
+import HomeScreen from "./src/screens/Home/Home";
 //devnet연결
 const NETWORK = clusterApiUrl("devnet");
 //지갑링크
@@ -170,14 +170,16 @@ export default function App() {
           initialRouteName="Home"
           screenOptions={{
             tabBarActiveTintColor: "#fb8c00",
-            tabBarShowLabel: false,
+            tabBarShowLabel: true,
           }}
         >
           <Tab.Screen
             name="Home"
-            component={HomeScreen}
+            component={HomeStack}
             options={{
-              title: "홈",
+              headerShown: false,
+              tabBarShowLabel: false,
+
               tabBarIcon: ({ color, size }) => (
                 <MaterialIcons size={30} name="home-work" color="black" />
               ),
@@ -187,7 +189,7 @@ export default function App() {
             name="Search"
             component={HomeScreen}
             options={{
-              title: "스캔",
+              tabBarLabel: "",
               tabBarIcon: ({ color, size }) => (
                 <MaterialIcons size={30} name="photo-camera" color="black" />
               ),
