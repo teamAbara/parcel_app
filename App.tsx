@@ -152,7 +152,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {phantomWalletPublicKey == null ? (
+      {phantomWalletPublicKey != null ? (
         <View style={styles.container}>
           <View style={styles.rows}>
             <Image
