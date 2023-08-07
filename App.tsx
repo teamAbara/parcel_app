@@ -8,7 +8,10 @@ import {
   View,
   Image,
 } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
+import { MaterialIcons } from "@expo/vector-icons";
+
 import * as Linking from "expo-linking";
 import bs58 from "bs58";
 import useStore from "./store";
@@ -31,6 +34,9 @@ import {
   SystemProgram,
   Transaction,
 } from "@solana/web3.js";
+
+/* scrreens */
+import HomeScreen from "./src/screens/Home";
 //devnet연결
 const NETWORK = clusterApiUrl("devnet");
 //지갑링크
@@ -55,6 +61,8 @@ export default function App() {
   const handleDeepLink = ({ url }: Linking.EventType) => {
     setDeepLink(url);
   };
+  const Tab = createBottomTabNavigator();
+
   //decryptPayload
   const decryptPayload = (
     data: string,
@@ -144,18 +152,77 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <View style={styles.container}>
-        <View style={styles.rows}>
-          <Image
-            source={require("./assets/img/parcel_logo.png")}
-            style={styles.image}
-            resizeMode="contain" //react_native에서 크기 조절용
-          />
+      {phantomWalletPublicKey == null ? (
+        <View style={styles.container}>
+          <View style={styles.rows}>
+            <Image
+              source={require("./assets/img/parcel_logo.png")}
+              style={styles.image}
+              resizeMode="contain" //react_native에서 크기 조절용
+            />
+          </View>
+          <TouchableOpacity onPress={connect} style={styles.button}>
+            <Text style={{ textAlign: "center" }}>phantom 으로 연결</Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity onPress={connect} style={styles.button}>
-          <Text style={{ textAlign: "center" }}>phantom 으로 연결</Text>
-        </TouchableOpacity>
-      </View>
+      ) : (
+        <Tab.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            tabBarActiveTintColor: "#fb8c00",
+            tabBarShowLabel: false,
+          }}
+        >
+          <Tab.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              title: "홈",
+              tabBarIcon: ({ color, size }) => (
+                <MaterialIcons size={30} name="home-work" color="black" />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Search"
+            component={HomeScreen}
+            options={{
+              title: "스캔",
+              tabBarIcon: ({ color, size }) => (
+                <MaterialIcons size={30} name="photo-camera" color="black" />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Notification"
+            component={HomeScreen}
+            options={{
+              title: "택배 리스트",
+              tabBarIcon: ({ color, size }) => (
+                <MaterialIcons
+                  size={30}
+                  name="playlist-add-check"
+                  color="black"
+                />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Message"
+            component={HomeScreen}
+            options={{
+              title: "마이페이지",
+              tabBarIcon: ({ color, size }) => (
+                <MaterialIcons
+                  size={30}
+                  name="supervised-user-circle"
+                  color="black"
+                />
+              ),
+            }}
+          />
+        </Tab.Navigator>
+      )}
     </NavigationContainer>
   );
 }
