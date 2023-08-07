@@ -1,6 +1,13 @@
 import "react-native-get-random-values";
 import "react-native-url-polyfill/auto";
-import { Button, TouchableOpacity, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import * as Linking from "expo-linking";
 import bs58 from "bs58";
@@ -138,14 +145,15 @@ export default function App() {
   return (
     <NavigationContainer>
       <View style={styles.container}>
-        <TouchableOpacity onPress={connect}>
-          {phantomWalletPublicKey == null ? (
-            <Text>연결</Text>
-          ) : (
-            <Text style={{ color: "black" }}>
-              {phantomWalletPublicKey.toBase58()}
-            </Text>
-          )}
+        <View style={styles.rows}>
+          <Image
+            source={require("./assets/img/parcel_logo.png")}
+            style={styles.image}
+            resizeMode="contain" //react_native에서 크기 조절용
+          />
+        </View>
+        <TouchableOpacity onPress={connect} style={styles.button}>
+          <Text style={{ textAlign: "center" }}>phantom 으로 연결</Text>
         </TouchableOpacity>
       </View>
     </NavigationContainer>
@@ -155,6 +163,29 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  image: {
+    width: 300,
+  },
+  button: {
+    flex: 1,
+    width: "100%",
+    borderStyle: "solid",
+    borderRadius: 100,
+    flexDirection: "row",
+    backgroundColor: "white",
+    marginBottom: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    borderWidth: 1,
+  },
+  rows: {
+    flex: 10,
+    flexDirection: "row",
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
