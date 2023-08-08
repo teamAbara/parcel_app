@@ -1,12 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  RefreshControl,
-} from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import React, { useEffect } from "react";
+
 import HomeScreen from "./Home/Home";
 import { MaterialIcons } from "@expo/vector-icons";
 import HomeStack from "../stack/Home";

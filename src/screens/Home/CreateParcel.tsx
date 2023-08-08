@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  RefreshControl,
-} from "react-native";
+import { Text, View } from "react-native";
 
 const CreateParcelScreen = ({ navigation }: any) => {
   return (

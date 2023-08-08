@@ -12,8 +12,6 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getStorage } from "../../../store/storage";
-import { removeStorage } from "../../../store/storage";
 const HomeScreen = ({ navigation }: any) => {
   const [data, setData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
