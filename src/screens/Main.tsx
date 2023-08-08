@@ -1,7 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import useStore from "../../store";
 const MainScreen = ({ navigation }: any) => {
+  const page = useStore().page;
+  const getStorage = async () => {
+    const token = await AsyncStorage.getItem("token");
+    if (token != null || token != undefined) {
+      navigation.navigate("Tab");
+    }
+  };
+  useEffect(() => {
+    getStorage();
+  }, [page]);
   return (
     <View style={styles.container}>
       <View style={styles.rows}>

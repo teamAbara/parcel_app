@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import axios from "axios";
+
 const countries = ["인천1", "인천2", "하남1", "서울1"];
 
 const SignUpScreen = ({ navigation }: any) => {
@@ -25,7 +26,7 @@ const SignUpScreen = ({ navigation }: any) => {
       })
       .then(res => {
         if (res.data.result == true) {
-          navigation.navigate("Back");
+          navigation.navigate("Main");
         }
       });
   };

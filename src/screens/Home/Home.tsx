@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useStore from "../../../store";
 import {
   Text,
@@ -11,7 +11,9 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getStorage } from "../../../store/storage";
+import { removeStorage } from "../../../store/storage";
 const HomeScreen = ({ navigation }: any) => {
   const [data, setData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -34,6 +36,12 @@ const HomeScreen = ({ navigation }: any) => {
   const handleCopyText = () => {
     Clipboard.setString(`${user}`);
     alert("주소 복사 완료");
+  };
+  const logout = async () => {
+    await AsyncStorage.removeItem("token");
+    await AsyncStorage.removeItem("refreshToken");
+    await AsyncStorage.removeItem("autoLogin");
+    navigation.navigate("Main");
   };
   return (
     <ScrollView
@@ -72,7 +80,13 @@ const HomeScreen = ({ navigation }: any) => {
       <View style={styles.rows2}></View>
       <View style={styles.rows2}></View>
       <View style={styles.rows}></View>
-
+      <Text
+        onPress={() => {
+          logout();
+        }}
+      >
+        로그아웃
+      </Text>
       <Button
         title="Go to Details"
         onPress={() => navigation.navigate("Details")}

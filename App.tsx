@@ -1,5 +1,6 @@
 import "react-native-get-random-values";
 import "react-native-url-polyfill/auto";
+
 import {
   Button,
   TouchableOpacity,
@@ -13,99 +14,43 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
-import axios from "axios";
 
 import useStore from "./store";
-
-import React, { useState } from "react";
-
-import MainStack from "./src/stack/Main";
-import HomeStack from "./src/stack/Home";
-
-/* scrreens */
+import MainScreen from "./src/screens/Main";
 import HomeScreen from "./src/screens/Home/Home";
+import React, { useState, useEffect } from "react";
 
+import HomeStack from "./src/stack/Home";
+import LoginScreen from "./src/screens/Auth/Login";
+import SignUpScreen from "./src/screens/Auth/SignUp";
+import TabScreen from "./src/screens/Tab";
+/* scrreens */
+import AsyncStorage from "@react-native-async-storage/async-storage";
 //devnet연결
 
 export default function App() {
   const Stack = createStackNavigator();
-  const Tab = createBottomTabNavigator();
-  const [user, setUser] = useState();
-  const test = async () => {
-    await axios
-      .post("http://localhost:8080/auth/sign_up", {
-        worker_id: "28",
-        worker_pw: "dd",
-        worker_address: "인천1",
-      })
-      .then(res => {
-        console.log(res.data);
-      });
-  };
+
   return (
     <NavigationContainer>
-      {user == null ? (
-        <MainStack />
-      ) : (
-        <Tab.Navigator
-          initialRouteName="Home"
-          screenOptions={{
-            tabBarActiveTintColor: "#fb8c00",
-            tabBarShowLabel: true,
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Main"
+          component={MainScreen}
+          options={{
+            headerShown: false,
           }}
-        >
-          <Tab.Screen
-            name="Home"
-            component={HomeStack}
-            options={{
-              headerShown: false,
-              tabBarShowLabel: false,
-
-              tabBarIcon: ({ color, size }) => (
-                <MaterialIcons size={30} name="home-work" color="black" />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Search"
-            component={HomeScreen}
-            options={{
-              tabBarLabel: "",
-              tabBarIcon: ({ color, size }) => (
-                <MaterialIcons size={30} name="photo-camera" color="black" />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Notification"
-            component={HomeScreen}
-            options={{
-              title: "택배 리스트",
-              tabBarIcon: ({ color, size }) => (
-                <MaterialIcons
-                  size={30}
-                  name="playlist-add-check"
-                  color="black"
-                />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Message"
-            component={HomeScreen}
-            options={{
-              title: "마이페이지",
-              tabBarIcon: ({ color, size }) => (
-                <MaterialIcons
-                  size={30}
-                  name="supervised-user-circle"
-                  color="black"
-                />
-              ),
-            }}
-          />
-        </Tab.Navigator>
-      )}
+        />
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name="Tab"
+          component={TabScreen}
+        />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
