@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet, Button, TouchableOpacity } from "react-native";
 import { BarCodeScanner, BarCodeScannerResult } from "expo-barcode-scanner";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 //택배 스캔
-export default function ScannerScreen() {
+export default function ProfileScreen({ navigation }: any) {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanned, setScanned] = useState<boolean>(false);
 
@@ -14,7 +15,12 @@ export default function ScannerScreen() {
 
     getBarCodeScannerPermissions();
   }, []);
-
+  const logout = async () => {
+    await AsyncStorage.removeItem("token");
+    await AsyncStorage.removeItem("refreshToken");
+    await AsyncStorage.removeItem("autoLogin");
+    navigation.navigate("Main");
+  };
   const handleBarCodeScanned = ({ type, data }: BarCodeScannerResult) => {
     setScanned(true);
     return <div>ddddd</div>;
@@ -30,13 +36,9 @@ export default function ScannerScreen() {
 
   return (
     <View style={styles.container}>
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
-      />
-      {scanned && (
-        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
-      )}
+      <TouchableOpacity onPress={logout}>
+        <Text>로그아웃</Text>
+      </TouchableOpacity>
     </View>
   );
 }

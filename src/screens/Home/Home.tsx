@@ -10,7 +10,6 @@ import {
   Clipboard,
   TouchableOpacity,
 } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const HomeScreen = ({ navigation }: any) => {
   const [data, setData] = useState([]);
@@ -43,7 +42,7 @@ const HomeScreen = ({ navigation }: any) => {
     await AsyncStorage.removeItem("autoLogin");
     navigation.navigate("Main");
   };
-  //
+
   useEffect(() => {}, []);
   return (
     <ScrollView
@@ -83,17 +82,13 @@ const HomeScreen = ({ navigation }: any) => {
             <View style={styles.parcel_list_header}>
               <Text style={styles.parcel_list_text}>배송내용</Text>
             </View>
-            <View style={styles.parcel_list_header}>
-              <Text style={styles.parcel_list_text}>
-                총 할당:{store.parcel_list_count}
-              </Text>
-            </View>
+
             <View style={styles.parcel_list_row}>
               <View style={styles.parcel_list_column}>
-                <Text style={styles.parcel_list_text2}>오늘 할당</Text>
+                <Text style={styles.parcel_list_text2}>미 완료</Text>
               </View>
               <View style={styles.parcel_list_column}>
-                <Text style={styles.parcel_list_text2}>남은 배송</Text>
+                <Text style={styles.parcel_list_text2}>배송 완료</Text>
               </View>
             </View>
             <View style={styles.parcel_list_row}>

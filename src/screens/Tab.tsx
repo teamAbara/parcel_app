@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import HomeScreen from "./Home/Home";
+import ProfileScreen from "./Profile/Profile";
 import ParcelListStack from "../stack/ParcelList";
 import ScannerScreen from "./Scan/Scan";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -28,7 +29,7 @@ const TabScreen = ({ navigation }: any) => {
     });
   };
   useEffect(() => {
-    fetchData();
+    // fetchData();
     getStorage();
   }, [page]);
   return (
@@ -78,7 +79,7 @@ const TabScreen = ({ navigation }: any) => {
         />
         <Tab.Screen
           name="Message"
-          component={HomeScreen}
+          component={ProfileScreen}
           options={{
             title: "마이페이지",
             tabBarIcon: ({ color, size }) => (

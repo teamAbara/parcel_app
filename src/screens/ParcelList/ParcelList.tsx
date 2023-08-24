@@ -67,7 +67,16 @@ const ParcelListScreen = ({ navigation }: any) => {
                 });
               }}
             >
-              현황: {item.progress}
+              현황:{" "}
+              {item.progress == "1"
+                ? "집화처리"
+                : item.progress == "2"
+                ? "간성 상차"
+                : item.progress == "3"
+                ? "간선 하차"
+                : item.progress == "4"
+                ? "배송 출고"
+                : "배송 완료"}
             </Text>
           </View>
         ))}
