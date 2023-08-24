@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import useStore from "../../store";
 const MainScreen = ({ navigation }: any) => {
@@ -15,9 +22,10 @@ const MainScreen = ({ navigation }: any) => {
   }, [page]);
   return (
     <View style={styles.container}>
+      <ImageBackground source={require("../../assets/img/back.jpeg")} />
       <View style={styles.rows}>
         <Image
-          source={require("../../assets/img/parcel_logo.png")}
+          source={require("../../assets/img/back.jpeg")}
           style={styles.image}
           resizeMode="contain" //react_native에서 크기 조절용
         />
@@ -26,13 +34,13 @@ const MainScreen = ({ navigation }: any) => {
         onPress={() => navigation.navigate("Login")}
         style={styles.button}
       >
-        <Text style={{ textAlign: "center" }}>Login</Text>
+        <Text style={{ textAlign: "center", fontWeight: "bold" }}>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button2}
         onPress={() => navigation.navigate("SignUp")}
       >
-        <Text style={{ textAlign: "center" }}>SignUp</Text>
+        <Text style={{ textAlign: "center", fontWeight: "bold" }}>SignUp</Text>
       </TouchableOpacity>
       <View style={styles.rows2} />
     </View>
@@ -43,21 +51,21 @@ export default MainScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 40,
-    backgroundColor: "#fff",
+    padding: 0,
+    backgroundColor: "#091140",
     alignItems: "center",
     justifyContent: "center",
   },
   image: {
-    width: 300,
+    width: 400,
   },
   button: {
     flex: 1,
-    width: "100%",
+    width: "80%",
     // borderStyle: "solid",
     borderRadius: 100,
     flexDirection: "row",
-    backgroundColor: "#ff506e",
+    backgroundColor: "#FFCD4A",
     marginBottom: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -72,11 +80,11 @@ const styles = StyleSheet.create({
   },
   button2: {
     flex: 1,
-    width: "100%",
+    width: "80%",
     borderStyle: "solid",
     borderRadius: 100,
     flexDirection: "row",
-    // backgroundColor: "#ff506e",
+    backgroundColor: "white",
     marginBottom: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -92,14 +100,14 @@ const styles = StyleSheet.create({
   rows: {
     flex: 8,
     flexDirection: "row",
-    backgroundColor: "#fff",
+    backgroundColor: "#091140",
     alignItems: "center",
     justifyContent: "center",
   },
   rows2: {
-    flex: 5,
+    flex: 2,
     flexDirection: "row",
-    backgroundColor: "#fff",
+    backgroundColor: "#091140",
     alignItems: "center",
     justifyContent: "center",
   },

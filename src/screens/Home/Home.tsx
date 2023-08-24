@@ -30,17 +30,21 @@ const HomeScreen = ({ navigation }: any) => {
     fetchData(); // 예시로 fetchData 함수를 호출하여 데이터를 갱신
     setRefreshing(false);
   };
+
   //주소 복사
   const handleCopyText = () => {
     Clipboard.setString(`${user}`);
     alert("주소 복사 완료");
   };
+  //로그아웃
   const logout = async () => {
     await AsyncStorage.removeItem("token");
     await AsyncStorage.removeItem("refreshToken");
     await AsyncStorage.removeItem("autoLogin");
     navigation.navigate("Main");
   };
+  //
+  useEffect(() => {}, []);
   return (
     <ScrollView
       style={styles.container}
@@ -59,15 +63,7 @@ const HomeScreen = ({ navigation }: any) => {
         <TouchableOpacity
           style={styles.header_address}
           onPress={handleCopyText}
-        >
-          <Text numberOfLines={1}>{user}</Text>
-        </TouchableOpacity>
-        <MaterialIcons
-          style={styles.header_profile}
-          size={30}
-          name="supervised-user-circle"
-          color="black"
-        />
+        ></TouchableOpacity>
       </View>
       <View
         style={{
@@ -75,20 +71,41 @@ const HomeScreen = ({ navigation }: any) => {
           borderBottomWidth: StyleSheet.hairlineWidth,
         }}
       />
-      <View style={styles.rows2}></View>
-      <View style={styles.rows2}></View>
+
+      <View>
+        <TouchableOpacity
+          style={styles.rows}
+          onPress={e => {
+            navigation.navigate("ParcelList");
+          }}
+        >
+          <View style={{ flex: 1, padding: 10 }}>
+            <View style={styles.parcel_list_header}>
+              <Text style={styles.parcel_list_text}>배송내용</Text>
+            </View>
+            <View style={styles.parcel_list_header}>
+              <Text style={styles.parcel_list_text}>총 할당:0</Text>
+            </View>
+            <View style={styles.parcel_list_row}>
+              <View style={styles.parcel_list_column}>
+                <Text style={styles.parcel_list_text2}>오늘 할당</Text>
+              </View>
+              <View style={styles.parcel_list_column}>
+                <Text style={styles.parcel_list_text2}>남은 배송</Text>
+              </View>
+            </View>
+            <View style={styles.parcel_list_row}>
+              <View style={styles.parcel_list_column}>
+                <Text style={styles.parcel_list_text2}>0</Text>
+              </View>
+              <View style={styles.parcel_list_column}>
+                <Text style={styles.parcel_list_text2}>0</Text>
+              </View>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </View>
       <View style={styles.rows}></View>
-      <Text
-        onPress={() => {
-          logout();
-        }}
-      >
-        로그아웃
-      </Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate("Details")}
-      />
     </ScrollView>
   );
 };
@@ -98,7 +115,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    backgroundColor: "#fff",
+    backgroundColor: "#091140",
   },
   header: {
     flex: 1,
@@ -116,7 +133,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#ff506e",
+    backgroundColor: "#FFCD4A",
     flexDirection: "column",
     shadowColor: "#000",
     shadowOffset: {
@@ -142,21 +159,45 @@ const styles = StyleSheet.create({
   rows: {
     marginTop: 20,
     flex: 10,
-    height: 300,
+    minHeight: 300,
+    height: "100%",
     flexDirection: "row",
-    backgroundColor: "blue",
-    alignItems: "center",
+    backgroundColor: "#FFCD4A",
     justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 1,
+      height: 3,
+    },
+    shadowOpacity: 0.6,
+    shadowRadius: 4.84,
     borderRadius: 40,
   },
-  rows2: {
+  parcel_list_header: {
+    flex: 1,
     marginTop: 20,
-    flex: 10,
-    height: 200,
+    minHeight: 10,
+    flexDirection: "column",
+  },
+  parcel_list_row: {
+    flex: 1,
     flexDirection: "row",
-    backgroundColor: "red",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 40,
+  },
+  parcel_list_column: {
+    margin: 10,
+    flex: 1,
+    flexDirection: "column",
+  },
+  parcel_list_text: {
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "white",
+  },
+  parcel_list_text2: {
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "white",
   },
 });

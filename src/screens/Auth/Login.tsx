@@ -3,14 +3,12 @@ import {
   Text,
   View,
   StyleSheet,
-  ScrollView,
-  RefreshControl,
   TextInput,
   TouchableOpacity,
 } from "react-native";
 import axios from "axios";
 import { setStorage } from "../../../store/storage";
-
+//로그인
 const LoginScreen = ({ navigation }: any) => {
   const [worker_id, setWorkerID] = useState("");
   const [worker_pw, setWorkerPW] = useState("");

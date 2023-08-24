@@ -3,14 +3,12 @@ import {
   Text,
   View,
   StyleSheet,
-  ScrollView,
-  RefreshControl,
   TextInput,
   TouchableOpacity,
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import axios from "axios";
-
+import { server } from "../../../util/const";
 const countries = ["인천1", "인천2", "하남1", "서울1"];
 
 const SignUpScreen = ({ navigation }: any) => {
@@ -19,7 +17,7 @@ const SignUpScreen = ({ navigation }: any) => {
   const [worker_address, setWorkerAddress] = useState("");
   const sign_up = async () => {
     await axios
-      .post("http://localhost:8080/auth/sign_up", {
+      .post(`${server}/auth/sign_up`, {
         worker_id: worker_id,
         worker_pw: worker_pw,
         worker_address: worker_address,

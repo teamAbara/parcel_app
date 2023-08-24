@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import HomeScreen from "./Home/Home";
+import ParcelListScreen from "./ParcelList/ParcelList";
 import { MaterialIcons } from "@expo/vector-icons";
 import HomeStack from "../stack/Home";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -50,8 +51,8 @@ const TabScreen = ({ navigation }: any) => {
           }}
         />
         <Tab.Screen
-          name="Notification"
-          component={HomeScreen}
+          name="ParcelList"
+          component={ParcelListScreen}
           options={{
             title: "택배 리스트",
             tabBarIcon: ({ color, size }) => (
