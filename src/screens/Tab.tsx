@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 import HomeScreen from "./Home/Home";
 import ParcelListScreen from "./ParcelList/ParcelList";
+import ScannerScreen from "./Scan/Scan";
 import { MaterialIcons } from "@expo/vector-icons";
 import HomeStack from "../stack/Home";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -41,8 +42,8 @@ const TabScreen = ({ navigation }: any) => {
           }}
         />
         <Tab.Screen
-          name="Search"
-          component={HomeScreen}
+          name="Scr"
+          component={ScannerScreen}
           options={{
             tabBarLabel: "",
             tabBarIcon: ({ color, size }) => (
