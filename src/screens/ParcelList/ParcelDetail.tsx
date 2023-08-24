@@ -11,11 +11,11 @@ import {
 import axios from "axios";
 
 //택배리스트
-const ParcelListScreen = ({ navigation }: any) => {
-  const [data, setData] = useState<any[]>([]);
+const ParcelDetailScreen = ({ route, navigation }: any) => {
+  const { itemId } = route.params;
 
+  const [data, setData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
-
   const store = useStore();
 
   const user = store.authUser;
@@ -23,11 +23,11 @@ const ParcelListScreen = ({ navigation }: any) => {
   //택배리스트 가져오기
   const fetchData = async () => {
     await axios.post(`${server}/parcel/worker_parcel_list`).then(res => {
-      const data = res.data.arr; // Assuming the response already contains JSON data
-      store.setParcelList(data);
+      console.log(res.data.arr);
+      setData(res.data.arr);
     });
   };
-
+  console.log(data);
   const onRefresh = () => {
     setRefreshing(true);
     // 새로고침 작업을 수행한 후
@@ -38,6 +38,7 @@ const ParcelListScreen = ({ navigation }: any) => {
   useEffect(() => {
     fetchData();
   }, []);
+  console.log(data);
   return (
     <ScrollView
       style={styles.container}
@@ -47,36 +48,13 @@ const ParcelListScreen = ({ navigation }: any) => {
       }
     >
       <View>
-        {store.parcel_list.map((item: any) => (
-          <View style={styles.rows}>
-            <Text
-              style={styles.parcel_list}
-              onPress={e => {
-                navigation.navigate("ParcelDetail", {
-                  itemId: 86,
-                });
-              }}
-            >
-              배송지: {item.from_address}
-            </Text>
-            <Text
-              style={styles.parcel_list}
-              onPress={e => {
-                navigation.navigate("ParcelDetail", {
-                  itemId: 86,
-                });
-              }}
-            >
-              현황: {item.progress}
-            </Text>
-          </View>
-        ))}
+        <Text>{itemId}</Text>
       </View>
     </ScrollView>
   );
 };
 
-export default ParcelListScreen;
+export default ParcelDetailScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -86,21 +64,12 @@ const styles = StyleSheet.create({
 
   rows: {
     marginTop: 10,
-    flex: 1,
+    flex: 10,
     height: 100,
-
+    flexDirection: "row",
     backgroundColor: "#FFCD4A",
     alignItems: "center",
-    borderRadius: 30,
-  },
-  parcel_list: {
-    marginTop: 15,
-    alignItems: "center",
     justifyContent: "center",
-    flex: 1,
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "white",
-    flexDirection: "row",
+    borderRadius: 30,
   },
 });

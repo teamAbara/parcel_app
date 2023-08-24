@@ -84,7 +84,9 @@ const HomeScreen = ({ navigation }: any) => {
               <Text style={styles.parcel_list_text}>배송내용</Text>
             </View>
             <View style={styles.parcel_list_header}>
-              <Text style={styles.parcel_list_text}>총 할당:0</Text>
+              <Text style={styles.parcel_list_text}>
+                총 할당:{store.parcel_list_count}
+              </Text>
             </View>
             <View style={styles.parcel_list_row}>
               <View style={styles.parcel_list_column}>
