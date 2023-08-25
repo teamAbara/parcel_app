@@ -8,8 +8,6 @@ export const getStorage = async (key: any) => {
 
 // set
 export const setStorage = async (key: any, value: any) => {
-  //   console.log(key);
-  //   console.log(value);
   return await AsyncStorage.setItem(key, JSON.stringify(value));
 };
 

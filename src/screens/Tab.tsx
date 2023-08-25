@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import HomeScreen from "./Home/Home";
 import ProfileScreen from "./Profile/Profile";
 import ParcelListStack from "../stack/ParcelList";
 import ScannerScreen from "./Scan/Scan";
@@ -35,7 +34,7 @@ const TabScreen = ({ navigation }: any) => {
       store.setParcelListCount(data.length);
     });
   };
-
+  //스캔 데이터
   const fetchData2 = async () => {
     await axios.post(`${server}/parcel/all_parcel_list_metadata`).then(res => {
       const data = res.data.arr; // Assuming the response already contains JSON data

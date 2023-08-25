@@ -15,20 +15,18 @@ export default function ScannerScreen() {
     };
     getBarCodeScannerPermissions();
   }, []);
-
+  //스캔 데이터 저장
   const handleBarCodeScanned = ({ type, data }: BarCodeScannerResult) => {
     setScanned(true);
     setScannedData(data); // 스캔된 데이터 저장
   };
-
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>;
   }
-
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
-  const test = store.all_parcel_list[Number(scannedData) - 1];
+  const parcel_list = store.all_parcel_list[Number(scannedData) - 1];
   return (
     <View style={styles.container}>
       <BarCodeScanner
@@ -39,20 +37,35 @@ export default function ScannerScreen() {
         {scanned && (
           <View style={styles.text_row}>
             <Text style={styles.text}>id: {scannedData}</Text>
-            <Text style={styles.text}>보내는분: {test?.from_name}</Text>
+            <Text style={styles.text}>보내는분: {parcel_list?.from_name}</Text>
             <Text style={styles.text}>
-              보내는분 주소 Data: {test?.from_address}
+              보내는분 주소: {parcel_list?.from_address}
             </Text>
-            <Text style={styles.text}>받는 분: {test?.to_name}</Text>
-            <Text style={styles.text}>받는 분 주소: {test?.to_address}</Text>
-            <Text style={styles.text}>진행현황: {test?.progress}</Text>
+            <Text style={styles.text}>받는 분: {parcel_list?.to_name}</Text>
+            <Text style={styles.text}>
+              받는 분 주소: {parcel_list?.to_address}
+            </Text>
+            <Text style={styles.text}>진행현황: {parcel_list?.progress}</Text>
           </View>
         )}
       </View>
       <View style={styles.row}></View>
       <View style={styles.row}></View>
       <View style={styles.row}>
-        <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
+        <View style={styles.button}>
+          <Button
+            color={"black"}
+            title={"Scan"}
+            onPress={() => setScanned(false)}
+          />
+        </View>
+        <View style={styles.button}>
+          <Button
+            color={"black"}
+            title={"처리"}
+            onPress={() => setScanned(false)}
+          />
+        </View>
       </View>
     </View>
   );
@@ -67,11 +80,17 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     justifyContent: "center",
-
     height: 20,
     flexDirection: "row",
     textAlign: "center",
   },
-  text_row: { height: 100, width: "100%", backgroundColor: "white" },
-  text: { width: "100%", backgroundColor: "white" },
+  text_row: { height: 100, width: "100%", backgroundColor: "#FFCD4A" },
+  text: { width: "100%", textAlign: "center", fontWeight: "bold" },
+  button: {
+    backgroundColor: "#FFCD4A",
+    width: 80,
+    borderRadius: 10,
+    margin: 60,
+    fontWeight: "bold",
+  },
 });

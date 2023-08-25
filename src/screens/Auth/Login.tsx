@@ -30,20 +30,25 @@ const LoginScreen = ({ navigation }: any) => {
       });
   };
   return (
-    <View style={{ padding: 50 }}>
+    <View style={{ padding: 50, backgroundColor: "#091140" }}>
       <TextInput
+        placeholder="id"
         style={styles.input}
         onChangeText={setWorkerID}
         value={worker_id}
       />
       <TextInput
+        placeholder="password"
         style={styles.input}
         onChangeText={setWorkerPW}
         value={worker_pw}
       />
 
       <TouchableOpacity style={styles.button}>
-        <Text style={{ textAlign: "center" }} onPress={login}>
+        <Text
+          style={{ textAlign: "center", fontWeight: "bold" }}
+          onPress={login}
+        >
           Login
         </Text>
       </TouchableOpacity>
@@ -60,6 +65,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     borderWidth: 1,
     borderRadius: 50,
+    backgroundColor: "white",
   },
   button: {
     borderRadius: 50,
@@ -68,6 +74,6 @@ const styles = StyleSheet.create({
     marginTop: 300,
     width: "100%",
     height: 60,
-    borderWidth: 1,
+    backgroundColor: "#FFCD4A",
   },
 });
