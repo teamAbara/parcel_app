@@ -12,7 +12,7 @@ import axios from "axios";
 
 //택배리스트
 const ParcelDetailScreen = ({ route, navigation }: any) => {
-  const { itemId } = route.params;
+  const { to_address, to_name, from_name, from_address } = route.params;
 
   const [data, setData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -27,18 +27,15 @@ const ParcelDetailScreen = ({ route, navigation }: any) => {
       setData(res.data.arr);
     });
   };
-  console.log(data);
   const onRefresh = () => {
     setRefreshing(true);
     // 새로고침 작업을 수행한 후
     fetchData(); // 예시로 fetchData 함수를 호출하여 데이터를 갱신
     setRefreshing(false);
   };
-
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(data);
   return (
     <ScrollView
       style={styles.container}
@@ -47,8 +44,13 @@ const ParcelDetailScreen = ({ route, navigation }: any) => {
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
-      <View>
-        <Text>{itemId}</Text>
+      <View style={styles.rows}>
+        <View style={styles.column}>
+          <Text style={styles.text}>보낸 분 : {to_name}</Text>
+          <Text style={styles.text}>보낸 분 주소 : {from_address}</Text>
+          <Text style={styles.text}>받는 분 : {to_name}</Text>
+          <Text style={styles.text}>받는 분 주소 : {to_address}</Text>
+        </View>
       </View>
     </ScrollView>
   );
@@ -65,11 +67,24 @@ const styles = StyleSheet.create({
   rows: {
     marginTop: 10,
     flex: 10,
-    height: 100,
+    height: 500,
     flexDirection: "row",
     backgroundColor: "#FFCD4A",
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 30,
+  },
+  column: {
+    flex: 1,
+    flexDirection: "column",
+    textAlign: "center",
+    justifyContent: "center",
+  },
+  text: {
+    marginTop: 20,
+    marginLeft: 20,
+    fontSize: 20,
+
+    fontWeight: "bold",
   },
 });

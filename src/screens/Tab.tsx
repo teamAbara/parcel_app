@@ -42,6 +42,7 @@ const TabScreen = ({ navigation }: any) => {
     });
   };
   useEffect(() => {
+    fetchData();
     fetchData2();
     getStorage();
   }, [page]);

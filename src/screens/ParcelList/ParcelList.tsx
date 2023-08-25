@@ -7,13 +7,12 @@ import {
   ScrollView,
   RefreshControl,
   Text,
+  TouchableOpacity,
 } from "react-native";
 import axios from "axios";
 
 //택배리스트
 const ParcelListScreen = ({ navigation }: any) => {
-  const [data, setData] = useState<any[]>([]);
-
   const [refreshing, setRefreshing] = useState(false);
 
   const store = useStore();
@@ -38,6 +37,7 @@ const ParcelListScreen = ({ navigation }: any) => {
   useEffect(() => {
     fetchData();
   }, []);
+
   return (
     <ScrollView
       style={styles.container}
@@ -49,35 +49,33 @@ const ParcelListScreen = ({ navigation }: any) => {
       <View>
         {store.parcel_list.map((item: any) => (
           <View style={styles.rows}>
-            <Text
-              style={styles.parcel_list}
+            <TouchableOpacity
               onPress={e => {
                 navigation.navigate("ParcelDetail", {
-                  itemId: 86,
+                  id: 86,
+                  from_name: item.from_name,
+                  from_address: item.from_address,
+                  to_name: item.to_name,
+                  to_address: item.to_address,
                 });
               }}
             >
-              배송지: {item.from_address}
-            </Text>
-            <Text
-              style={styles.parcel_list}
-              onPress={e => {
-                navigation.navigate("ParcelDetail", {
-                  itemId: 86,
-                });
-              }}
-            >
-              현황:{" "}
-              {item.progress == "1"
-                ? "집화처리"
-                : item.progress == "2"
-                ? "간성 상차"
-                : item.progress == "3"
-                ? "간선 하차"
-                : item.progress == "4"
-                ? "배송 출고"
-                : "배송 완료"}
-            </Text>
+              <Text style={styles.parcel_list}>
+                배송지: {item.from_address}
+              </Text>
+              <Text style={styles.parcel_list}>
+                현황:{" "}
+                {item.progress == "1"
+                  ? "집화처리"
+                  : item.progress == "2"
+                  ? "간성 상차"
+                  : item.progress == "3"
+                  ? "간선 하차"
+                  : item.progress == "4"
+                  ? "배송 출고"
+                  : "배송 완료"}
+              </Text>
+            </TouchableOpacity>
           </View>
         ))}
       </View>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Text,
   View,
@@ -62,14 +62,12 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     width: "80%",
-    // borderStyle: "solid",
     borderRadius: 100,
     flexDirection: "row",
     backgroundColor: "#FFCD4A",
     marginBottom: 20,
     alignItems: "center",
     justifyContent: "center",
-    // borderWidth: 1,
     shadowColor: "#000",
     shadowOffset: {
       width: 1,
