@@ -6,6 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+
 import { server } from "../../../util/const";
 import axios from "axios";
 import { setStorage } from "../../../store/storage";
@@ -30,7 +32,18 @@ const LoginScreen = ({ navigation }: any) => {
       });
   };
   return (
-    <View style={{ padding: 50, backgroundColor: "#091140" }}>
+    <View style={styles.container}>
+      <View style={{ marginTop: 50, flexDirection: "row" }}>
+        <TouchableOpacity
+          style={{ marginRight: 120 }}
+          onPress={() => {
+            navigation.navigate("Main");
+          }}
+        >
+          <MaterialIcons size={30} name="arrow-back-ios" color="white" />
+        </TouchableOpacity>
+        <Text style={styles.head_text}>로그인</Text>
+      </View>
       <TextInput
         placeholder="id"
         style={styles.input}
@@ -58,6 +71,11 @@ const LoginScreen = ({ navigation }: any) => {
 
 export default LoginScreen;
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: "#091140",
+  },
   input: {
     textAlign: "center",
     width: "100%",
@@ -75,5 +93,14 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 60,
     backgroundColor: "#FFCD4A",
+  },
+  head_text: {
+    marginBottom: 100,
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "white",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

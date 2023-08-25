@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/Home/Home";
-import CreateParcelScreen from "../screens/Home/CreateParcel";
 
 function HomeStack() {
   const Stack = createStackNavigator();
@@ -15,7 +14,6 @@ function HomeStack() {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="ParcelDetail" component={CreateParcelScreen} />
     </Stack.Navigator>
   );
 }

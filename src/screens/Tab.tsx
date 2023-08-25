@@ -72,6 +72,8 @@ const TabScreen = ({ navigation }: any) => {
           component={ScannerScreen}
           options={{
             tabBarLabel: "",
+            headerShown: false,
+
             tabBarIcon: ({ color, size }) => (
               <MaterialIcons size={30} name="photo-camera" color="black" />
             ),
@@ -82,6 +84,7 @@ const TabScreen = ({ navigation }: any) => {
           component={ParcelListStack}
           options={{
             title: "택배 리스트",
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
               <MaterialIcons
                 size={30}
@@ -96,6 +99,7 @@ const TabScreen = ({ navigation }: any) => {
           component={ProfileScreen}
           options={{
             title: "마이페이지",
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
               <MaterialIcons
                 size={30}

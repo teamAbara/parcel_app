@@ -51,6 +51,15 @@ const ProfileScreen = ({ navigation }: any) => {
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
+      <View
+        style={{
+          marginTop: 50,
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        <Text style={styles.head_text}>프로필</Text>
+      </View>
       <View style={styles.rows}>
         <View style={styles.rows2}>
           <Text>아이디</Text>
@@ -137,5 +146,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.6,
     shadowRadius: 4.84,
     borderRadius: 40,
+  },
+  head_text: {
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "white",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

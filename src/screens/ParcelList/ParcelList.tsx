@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import useStore from "../../../store";
 import { server } from "../../../util/const";
+import { MaterialIcons } from "@expo/vector-icons";
+
 import {
   View,
   StyleSheet,
@@ -46,6 +48,15 @@ const ParcelListScreen = ({ navigation }: any) => {
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
+      <View
+        style={{
+          marginTop: 50,
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
+        <Text style={styles.head_text}>택배 리스트</Text>
+      </View>
       <View>
         {store.parcel_list.map((item: any) => (
           <View style={styles.rows}>
@@ -109,5 +120,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     flexDirection: "row",
+  },
+  head_text: {
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "white",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

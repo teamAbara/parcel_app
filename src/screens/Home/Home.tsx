@@ -35,15 +35,7 @@ const HomeScreen = ({ navigation }: any) => {
     Clipboard.setString(`${user}`);
     alert("주소 복사 완료");
   };
-  //로그아웃
-  const logout = async () => {
-    await AsyncStorage.removeItem("token");
-    await AsyncStorage.removeItem("refreshToken");
-    await AsyncStorage.removeItem("autoLogin");
-    navigation.navigate("Main");
-  };
 
-  useEffect(() => {}, []);
   return (
     <ScrollView
       style={styles.container}
@@ -72,7 +64,9 @@ const HomeScreen = ({ navigation }: any) => {
           borderBottomWidth: StyleSheet.hairlineWidth,
         }}
       />
-
+      <View>
+        <Text style={styles.parcel_list_text}>배송내용</Text>
+      </View>
       <View>
         <TouchableOpacity
           style={styles.rows}
@@ -80,11 +74,7 @@ const HomeScreen = ({ navigation }: any) => {
             navigation.navigate("ParcelList");
           }}
         >
-          <View style={{ flex: 1, padding: 10 }}>
-            <View style={styles.parcel_list_header}>
-              <Text style={styles.parcel_list_text}>배송내용</Text>
-            </View>
-
+          <View style={{ flex: 1, padding: 10, flexDirection: "column" }}>
             <View style={styles.parcel_list_row}>
               <View style={styles.parcel_list_column}>
                 <Text style={styles.parcel_list_text2}>미 완료</Text>

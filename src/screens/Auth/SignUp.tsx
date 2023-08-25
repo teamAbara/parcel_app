@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import axios from "axios";
+import { MaterialIcons } from "@expo/vector-icons";
+
 import { server } from "../../../util/const";
 const countries = ["인천1", "인천2", "하남1", "서울1"];
 //회원가입 페이지
@@ -32,7 +34,18 @@ const SignUpScreen = ({ navigation }: any) => {
       });
   };
   return (
-    <View style={{ padding: 50, backgroundColor: "#091140" }}>
+    <View style={styles.container}>
+      <View style={{ marginTop: 50, flexDirection: "row" }}>
+        <TouchableOpacity
+          style={{ marginRight: 120 }}
+          onPress={() => {
+            navigation.navigate("Main");
+          }}
+        >
+          <MaterialIcons size={30} name="arrow-back-ios" color="white" />
+        </TouchableOpacity>
+        <Text style={styles.head_text}>회원가입</Text>
+      </View>
       <TextInput
         placeholder="id"
         style={styles.input}
@@ -76,6 +89,11 @@ const SignUpScreen = ({ navigation }: any) => {
 
 export default SignUpScreen;
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: "#091140",
+  },
   input: {
     textAlign: "center",
     width: "100%",
@@ -93,5 +111,14 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 60,
     backgroundColor: "#FFCD4A",
+  },
+  head_text: {
+    marginBottom: 100,
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "white",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

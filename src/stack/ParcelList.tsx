@@ -16,7 +16,13 @@ function ParcelListStack() {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="ParcelDetail" component={ParcelDetailScreen} />
+      <Stack.Screen
+        name="ParcelDetail"
+        component={ParcelDetailScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 }

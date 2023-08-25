@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import useStore from "../../../store";
 import { server } from "../../../util/const";
+import { MaterialIcons } from "@expo/vector-icons";
+
 import {
   View,
   StyleSheet,
   ScrollView,
   RefreshControl,
   Text,
+  TouchableOpacity,
 } from "react-native";
 import axios from "axios";
 
@@ -44,6 +47,16 @@ const ParcelDetailScreen = ({ route, navigation }: any) => {
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
+      <View style={{ marginTop: 50, flexDirection: "row" }}>
+        <TouchableOpacity
+          style={{ marginRight: 90 }}
+          onPress={() => {
+            navigation.navigate("ParcelList");
+          }}
+        >
+          <MaterialIcons size={30} name="arrow-back-ios" color="white" />
+        </TouchableOpacity>
+      </View>
       <View style={styles.rows}>
         <View style={styles.column}>
           <Text style={styles.text}>보낸 분 : {to_name}</Text>
@@ -60,6 +73,7 @@ export default ParcelDetailScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+
     padding: 10,
     backgroundColor: "#091140",
   },
@@ -86,5 +100,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
 
     fontWeight: "bold",
+  },
+  head_text: {
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "white",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
