@@ -9,6 +9,7 @@ import useStore from "../../store";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import axios from "axios";
 import { server } from "../../util/const";
+//로그인후 페이지
 const TabScreen = ({ navigation }: any) => {
   const store = useStore();
   const page = useStore().page;
@@ -55,7 +56,7 @@ const TabScreen = ({ navigation }: any) => {
         initialRouteName="Home"
         screenOptions={{
           tabBarActiveTintColor: "#fb8c00",
-          tabBarShowLabel: true,
+          tabBarShowLabel: false,
         }}
       >
         <Tab.Screen
