@@ -9,14 +9,16 @@ import {
 import SelectDropdown from "react-native-select-dropdown";
 import axios from "axios";
 import { MaterialIcons } from "@expo/vector-icons";
-
 import { server } from "../../../util/const";
+//지역
 const countries = ["인천1", "인천2", "하남1", "서울1"];
 //회원가입 페이지
 const SignUpScreen = ({ navigation }: any) => {
-  const [worker_id, setWorkerID] = useState("");
-  const [worker_pw, setWorkerPW] = useState("");
-  const [worker_address, setWorkerAddress] = useState("");
+  const [worker_id, setWorkerID] = useState(""); //아이디
+  const [worker_pw, setWorkerPW] = useState(""); //비밀번호
+  const [worker_address, setWorkerAddress] = useState(""); //가입 위치
+
+  //서버에 회원가입 요청
   const sign_up = async () => {
     await axios
       .post(`${server}/auth/sign_up`, {

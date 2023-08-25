@@ -13,6 +13,8 @@ const TabScreen = ({ navigation }: any) => {
   const store = useStore();
   const page = useStore().page;
   const Tab = createBottomTabNavigator();
+
+  //스토리지에 저장
   const getStorage = async () => {
     const token = await AsyncStorage.getItem("token");
     const worker_id = await AsyncStorage.getItem("worker_id");
@@ -21,6 +23,7 @@ const TabScreen = ({ navigation }: any) => {
       .then(res => {
         console.log(res.data);
         store.setWorkerPublic(res?.data?.worker?.worker_public);
+        store.setWorkerID(res?.data?.worker?.worker_id);
       });
     if (token == null || token == undefined) {
       navigation.navigate("Main");
@@ -35,7 +38,7 @@ const TabScreen = ({ navigation }: any) => {
     });
   };
   //스캔 데이터
-  const fetchData2 = async () => {
+  const all_parcel_list_metadata = async () => {
     await axios.post(`${server}/parcel/all_parcel_list_metadata`).then(res => {
       const data = res.data.arr; // Assuming the response already contains JSON data
       store.setAllParcelList(data);
@@ -43,7 +46,7 @@ const TabScreen = ({ navigation }: any) => {
   };
   useEffect(() => {
     fetchData();
-    fetchData2();
+    all_parcel_list_metadata();
     getStorage();
   }, [page]);
   return (

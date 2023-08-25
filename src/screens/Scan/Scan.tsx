@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { BarCodeScanner, BarCodeScannerResult } from "expo-barcode-scanner";
 import useStore from "../../../store";
+import axios from "axios";
+import { server } from "../../../util/const";
 //택배 스캔
 export default function ScannerScreen() {
   const store = useStore();
@@ -27,6 +29,20 @@ export default function ScannerScreen() {
     return <Text>No access to camera</Text>;
   }
   const parcel_list = store.all_parcel_list[Number(scannedData) - 1];
+
+  const update_parcel_progress = async () => {
+    await axios
+      .post(`${server}/parcel/update_parcel_progress`, {
+        worker_id: store.worker_id,
+      })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        if (res.data.result == true) {
+          alert("sucess");
+        }
+      });
+  };
   return (
     <View style={styles.container}>
       <BarCodeScanner
@@ -63,7 +79,7 @@ export default function ScannerScreen() {
           <Button
             color={"black"}
             title={"처리"}
-            onPress={() => setScanned(false)}
+            onPress={() => update_parcel_progress()}
           />
         </View>
       </View>

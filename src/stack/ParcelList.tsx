@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "../screens/Home/Home";
 import ParcelDetailScreen from "../screens/ParcelList/ParcelDetail";
 import ParcelListScreen from "../screens/ParcelList/ParcelList";
 

@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import useStore from "../../store";
+
+//첫 페이지
 const MainScreen = ({ navigation }: any) => {
   const page = useStore().page;
   const getStorage = async () => {

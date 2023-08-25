@@ -19,8 +19,6 @@ const ParcelListScreen = ({ navigation }: any) => {
 
   const store = useStore();
 
-  const user = store.authUser;
-
   //택배리스트 가져오기
   const fetchData = async () => {
     await axios.post(`${server}/parcel/worker_parcel_list`).then(res => {

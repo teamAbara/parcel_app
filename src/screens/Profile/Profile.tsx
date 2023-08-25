@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useStore from "../../../store";
 import {
   Text,
@@ -6,22 +6,24 @@ import {
   StyleSheet,
   ScrollView,
   RefreshControl,
-  Button,
   Clipboard,
   TouchableOpacity,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+//마이페이지
 const ProfileScreen = ({ navigation }: any) => {
-  const [data, setData] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
   const store = useStore();
-  const user = store.authUser;
   const fetchData = () => {
     // 데이터를 가져오는 비동기 함수를 호출하여 새로운 데이터를 가져옵니다.
     // 새로운 데이터를 기존 데이터에 추가합니다.
     // const newData = [...data, ...newDataFromApi];
     // setData(newData);
   };
+  /*로그아웃 
+  - 스토리지에서 삭제
+  - 메인으로 이동
+  */
   const logout = async () => {
     await AsyncStorage.removeItem("token");
     await AsyncStorage.removeItem("refreshToken");
@@ -38,11 +40,10 @@ const ProfileScreen = ({ navigation }: any) => {
 
   //주소 복사
   const handleCopyText = () => {
-    Clipboard.setString(`${user}`);
+    Clipboard.setString(`${"ㅇ"}`);
     alert("주소 복사 완료");
   };
 
-  useEffect(() => {}, []);
   return (
     <ScrollView
       style={styles.container}
@@ -62,7 +63,7 @@ const ProfileScreen = ({ navigation }: any) => {
       </View>
       <View style={styles.rows}>
         <View style={styles.rows2}>
-          <Text>아이디</Text>
+          <Text style={styles.text}>아이디:{store.worker_id}</Text>
         </View>
         <View style={styles.rows2}>
           <Text>아이디</Text>
@@ -73,7 +74,7 @@ const ProfileScreen = ({ navigation }: any) => {
       </View>
       <View style={styles.header}>
         <TouchableOpacity style={styles.logout_button} onPress={logout}>
-          <Text>로그아웃</Text>
+          <Text style={{ fontWeight: "bold" }}>로그아웃</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -146,12 +147,20 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.6,
     shadowRadius: 4.84,
     borderRadius: 40,
+    fontWeight: "bold",
   },
   head_text: {
     textAlign: "center",
     fontSize: 30,
     fontWeight: "bold",
     color: "white",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    fontWeight: "bold",
+    fontSize: 30,
+    color: "black",
     justifyContent: "center",
     alignItems: "center",
   },

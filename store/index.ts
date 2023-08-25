@@ -1,8 +1,6 @@
 import { create } from "zustand";
 
 type Store = {
-  authUser: String | null;
-  setAuthUser: (user: String | null) => void;
   parcel_list: any[];
   setParcelList: (parcel: any[]) => void;
   parcel_list_count: number;
@@ -13,13 +11,13 @@ type Store = {
   worker_public: String;
   setWorkerPublic: (user: String) => void;
 
+  worker_id: String;
+  setWorkerID: (user: String) => void;
   all_parcel_list: any[];
   setAllParcelList: (parcel: any[]) => void;
 };
 
 const useStore = create<Store>(set => ({
-  authUser: null,
-  setAuthUser: user => set(state => ({ ...state, authUser: user })),
   all_parcel_list: [],
   setAllParcelList: parcel =>
     set(state => ({ ...state, all_parcel_list: parcel })),
@@ -34,5 +32,7 @@ const useStore = create<Store>(set => ({
 
   worker_public: "",
   setWorkerPublic: data => set(state => ({ ...state, worker_public: data })),
+  worker_id: "",
+  setWorkerID: data => set(state => ({ ...state, worker_id: data })),
 }));
 export default useStore;

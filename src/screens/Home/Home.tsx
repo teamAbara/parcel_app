@@ -1,38 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import useStore from "../../../store";
 import {
   Text,
   View,
   StyleSheet,
   ScrollView,
-  RefreshControl,
-  Button,
   Clipboard,
   TouchableOpacity,
 } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+//홈
 const HomeScreen = ({ navigation }: any) => {
-  const [data, setData] = useState([]);
-  const [refreshing, setRefreshing] = useState(false);
   const store = useStore();
-  const user = store.authUser;
-  const fetchData = () => {
-    // 데이터를 가져오는 비동기 함수를 호출하여 새로운 데이터를 가져옵니다.
-    // 새로운 데이터를 기존 데이터에 추가합니다.
-    // const newData = [...data, ...newDataFromApi];
-    // setData(newData);
-  };
-
-  const onRefresh = () => {
-    setRefreshing(true);
-    // 새로고침 작업을 수행한 후
-    fetchData(); // 예시로 fetchData 함수를 호출하여 데이터를 갱신
-    setRefreshing(false);
-  };
 
   //주소 복사
   const handleCopyText = () => {
-    Clipboard.setString(`${user}`);
+    Clipboard.setString(`${"ㅇ"}`);
     alert("주소 복사 완료");
   };
 
@@ -40,16 +22,7 @@ const HomeScreen = ({ navigation }: any) => {
     <ScrollView
       style={styles.container}
       bounces={true} // bounces를 true로 설정하여 아래로 당기는 동작을 허용
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-      }
     >
-      {data.map((item, index) => (
-        <Text key={index} style={{ color: "black" }}>
-          {item}
-        </Text>
-      ))}
-
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.header_address}
