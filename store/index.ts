@@ -9,12 +9,20 @@ type Store = {
   setParcelListCount: (parcel_count: number) => void;
   page: String | null;
   setPage: (user: String | null) => void;
+
+  worker_public: String;
+  setWorkerPublic: (user: String) => void;
+
+  all_parcel_list: any[];
+  setAllParcelList: (parcel: any[]) => void;
 };
 
 const useStore = create<Store>(set => ({
   authUser: null,
   setAuthUser: user => set(state => ({ ...state, authUser: user })),
-
+  all_parcel_list: [],
+  setAllParcelList: parcel =>
+    set(state => ({ ...state, all_parcel_list: parcel })),
   parcel_list: [],
   setParcelList: parcel => set(state => ({ ...state, parcel_list: parcel })),
   parcel_list_count: 0,
@@ -23,5 +31,8 @@ const useStore = create<Store>(set => ({
 
   page: "Back",
   setPage: data => set(state => ({ ...state, page: data })),
+
+  worker_public: "",
+  setWorkerPublic: data => set(state => ({ ...state, worker_public: data })),
 }));
 export default useStore;

@@ -16,6 +16,13 @@ const TabScreen = ({ navigation }: any) => {
   const Tab = createBottomTabNavigator();
   const getStorage = async () => {
     const token = await AsyncStorage.getItem("token");
+    const worker_id = await AsyncStorage.getItem("worker_id");
+    await axios
+      .post(`${server}/auth/get_user`, { worker_id: worker_id?.toString() })
+      .then(res => {
+        console.log(res.data);
+        store.setWorkerPublic(res?.data?.worker?.worker_public);
+      });
     if (token == null || token == undefined) {
       navigation.navigate("Main");
     }
@@ -28,8 +35,15 @@ const TabScreen = ({ navigation }: any) => {
       store.setParcelListCount(data.length);
     });
   };
+
+  const fetchData2 = async () => {
+    await axios.post(`${server}/parcel/all_parcel_list_metadata`).then(res => {
+      const data = res.data.arr; // Assuming the response already contains JSON data
+      store.setAllParcelList(data);
+    });
+  };
   useEffect(() => {
-    // fetchData();
+    fetchData2();
     getStorage();
   }, [page]);
   return (

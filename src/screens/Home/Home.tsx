@@ -62,7 +62,9 @@ const HomeScreen = ({ navigation }: any) => {
         <TouchableOpacity
           style={styles.header_address}
           onPress={handleCopyText}
-        ></TouchableOpacity>
+        >
+          <Text style={{ color: "black" }}>{store.worker_public}</Text>
+        </TouchableOpacity>
       </View>
       <View
         style={{
@@ -120,11 +122,10 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: "row",
     alignItems: "center",
-    borderRadius: 40,
   },
   header_address: {
     flex: 14,
-    borderRadius: 30,
+    borderRadius: 10,
     height: 30,
     padding: 4,
     textAlign: "center",
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.6,
     shadowRadius: 4.84,
-    borderRadius: 40,
+    borderRadius: 20,
   },
   parcel_list_header: {
     flex: 1,

@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
 
     backgroundColor: "#FFCD4A",
     alignItems: "center",
-    borderRadius: 30,
+    borderRadius: 20,
   },
   parcel_list: {
     marginTop: 15,

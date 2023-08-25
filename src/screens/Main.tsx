@@ -7,7 +7,6 @@ import {
   Image,
   ImageBackground,
 } from "react-native";
-import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import useStore from "../../store";
 const MainScreen = ({ navigation }: any) => {
@@ -42,21 +41,6 @@ const MainScreen = ({ navigation }: any) => {
         onPress={() => navigation.navigate("SignUp")}
       >
         <Text style={{ textAlign: "center", fontWeight: "bold" }}>SignUp</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button2}
-        onPress={async () => {
-          await axios
-            .post("http://localhost:8080/test")
-            .then(res => {
-              console.log();
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        }}
-      >
-        <Text style={{ textAlign: "center", fontWeight: "bold" }}>test</Text>
       </TouchableOpacity>
       <View style={styles.rows2} />
     </View>

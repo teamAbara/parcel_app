@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { server } from "../../../util/const";
 import axios from "axios";
 import { setStorage } from "../../../store/storage";
 //로그인
@@ -14,7 +15,7 @@ const LoginScreen = ({ navigation }: any) => {
   const [worker_pw, setWorkerPW] = useState("");
   const login = async () => {
     await axios
-      .post("http://localhost:8080/auth/login", {
+      .post(`${server}/auth/login`, {
         worker_id: worker_id,
         worker_pw: worker_pw,
       })
@@ -22,6 +23,7 @@ const LoginScreen = ({ navigation }: any) => {
         if (res.data.result == true) {
           setStorage("token", res.data.access_token);
           setStorage("refreshToken", res.data.refresh_token);
+          setStorage("worker_id", res.data.worker_id);
           setStorage("autoLogin", true);
           navigation.navigate("Tab");
         }
