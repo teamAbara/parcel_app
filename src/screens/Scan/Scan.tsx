@@ -28,9 +28,10 @@ export default function ScannerScreen() {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
-  const parcel_list = store.all_parcel_list[Number(scannedData) - 1];
+  const parcel_list = store?.all_parcel_list[Number(scannedData) - 1];
 
   const update_parcel_progress = async () => {
+    if (!store.worker_id) return;
     await axios
       .post(`${server}/parcel/update_parcel_progress`, {
         worker_id: store.worker_id,
