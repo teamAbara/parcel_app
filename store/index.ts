@@ -13,6 +13,12 @@ type Store = {
 
   worker_id: String;
   setWorkerID: (user: String) => void;
+
+  worker_phone: String;
+  setWorkerPhone: (user: String) => void;
+
+  worker_address: String;
+  setWorkerAddress: (user: String) => void;
   all_parcel_list: any[];
   setAllParcelList: (parcel: any[]) => void;
 };
@@ -34,5 +40,10 @@ const useStore = create<Store>(set => ({
   setWorkerPublic: data => set(state => ({ ...state, worker_public: data })),
   worker_id: "",
   setWorkerID: data => set(state => ({ ...state, worker_id: data })),
+  worker_phone: "",
+  setWorkerPhone: data => set(state => ({ ...state, worker_phone: data })),
+
+  worker_address: "",
+  setWorkerAddress: data => set(state => ({ ...state, worker_address: data })),
 }));
 export default useStore;

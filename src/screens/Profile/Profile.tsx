@@ -41,7 +41,7 @@ const ProfileScreen = ({ navigation }: any) => {
 
   //주소 복사
   const handleCopyText = () => {
-    Clipboard.setString(`${"ㅇ"}`);
+    Clipboard.setString(`${store.worker_public}`);
     alert("주소 복사 완료");
   };
 
@@ -73,12 +73,21 @@ const ProfileScreen = ({ navigation }: any) => {
           <View style={styles.rows2}>
             <Text style={styles.text}>아이디:{store.worker_id}</Text>
           </View>
+
           <View style={styles.rows2}>
-            <Text style={styles.text}>전화번호:{store.worker_id}</Text>
+            <Text style={styles.text}>전화번호:{store.worker_phone}</Text>
           </View>
         </View>
       </View>
       <View style={styles.header}>
+        <TouchableOpacity style={styles.logout_button}>
+          <Text style={{ fontWeight: "bold" }}>
+            지역:{store.worker_address}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.logout_button} onPress={handleCopyText}>
+          <Text style={{ fontWeight: "bold" }}>주소 복사</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.logout_button} onPress={logout}>
           <Text style={{ fontWeight: "bold" }}>로그아웃</Text>
         </TouchableOpacity>
@@ -96,16 +105,19 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    height: 100,
+
+    height: 200,
     marginTop: 0,
-    flexDirection: "row",
+    flexDirection: "column",
     alignItems: "center",
     borderRadius: 40,
   },
   logout_button: {
     flex: 14,
+    width: "100%",
+    marginTop: 10,
     borderRadius: 10,
-    height: 40,
+    height: 50,
     padding: 4,
     textAlign: "center",
     alignItems: "center",
@@ -140,7 +152,6 @@ const styles = StyleSheet.create({
   rows2: {
     margin: 10,
     flex: 1,
-
     flexDirection: "row",
     justifyContent: "center",
     shadowColor: "#000",

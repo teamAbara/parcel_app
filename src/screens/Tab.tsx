@@ -25,6 +25,11 @@ const TabScreen = ({ navigation }: any) => {
         console.log(res.data);
         store.setWorkerPublic(res?.data?.worker?.worker_public);
         store.setWorkerID(res?.data?.worker?.worker_id);
+        store.setWorkerAddress(res?.data?.worker?.worker_address);
+        store.setWorkerPhone(res?.data?.worker?.worker_phone);
+      })
+      .catch(() => {
+        console.log("ERROR:유저 목록불러오기");
       });
     if (token == null || token == undefined) {
       navigation.navigate("Main");
@@ -34,20 +39,22 @@ const TabScreen = ({ navigation }: any) => {
   //접속 아이디 서버로 보내기
   const fetchData = async () => {
     const worker_id = await AsyncStorage.getItem("worker_id");
-    console.log(worker_id);
     if (!worker_id) return;
     await axios
       .post(`${server}/parcel/worker_parcel_list`, { worker_id: worker_id })
       .then(res => {
-        const data = res.data.arr; // Assuming the response already contains JSON data
+        const data = res.data.arr;
         store.setParcelList(data);
         store.setParcelListCount(data.length);
+      })
+      .catch(() => {
+        console.log("ERROR:할당된 배송 목록");
       });
   };
   //스캔 데이터
   const all_parcel_list_metadata = async () => {
     await axios.post(`${server}/parcel/all_parcel_list_metadata`).then(res => {
-      const data = res.data.arr; // Assuming the response already contains JSON data
+      const data = res.data.arr;
       store.setAllParcelList(data);
     });
   };

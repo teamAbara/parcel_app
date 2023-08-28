@@ -11,11 +11,28 @@ import axios from "axios";
 import { MaterialIcons } from "@expo/vector-icons";
 import { server } from "../../../util/const";
 //지역
-const countries = ["인천1", "인천2", "하남1", "서울1"];
+const countries = [
+  "서울1",
+  "서울2",
+  "인천1",
+  "인천2",
+  "하남1",
+  "하남2",
+  "의정부1",
+  "의정부2",
+  "수원1",
+  "수원2",
+  "부산1",
+  "부산2",
+  "제주1",
+  "제주2",
+];
 //회원가입 페이지
 const SignUpScreen = ({ navigation }: any) => {
   const [worker_id, setWorkerID] = useState(""); //아이디
   const [worker_pw, setWorkerPW] = useState(""); //비밀번호
+  const [worker_phone, setWorkerPhone] = useState(""); //비밀번호
+
   const [worker_address, setWorkerAddress] = useState(""); //가입 위치
 
   //서버에 회원가입 요청
@@ -49,16 +66,22 @@ const SignUpScreen = ({ navigation }: any) => {
         <Text style={styles.head_text}>회원가입</Text>
       </View>
       <TextInput
-        placeholder="id"
+        placeholder="아이디"
         style={styles.input}
         onChangeText={setWorkerID}
         value={worker_id}
       />
       <TextInput
-        placeholder="password"
+        placeholder="비밀번호"
         style={styles.input}
         onChangeText={setWorkerPW}
         value={worker_pw}
+      />
+      <TextInput
+        placeholder="전화번호"
+        style={styles.input}
+        onChangeText={setWorkerPhone}
+        value={worker_phone}
       />
       <SelectDropdown
         data={countries}
@@ -109,7 +132,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     textAlign: "center",
     justifyContent: "center",
-    marginTop: 300,
+    marginTop: 200,
     width: "100%",
     height: 60,
     backgroundColor: "#FFCD4A",

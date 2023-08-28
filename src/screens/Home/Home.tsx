@@ -14,7 +14,8 @@ const HomeScreen = ({ navigation }: any) => {
 
   //주소 복사
   const handleCopyText = () => {
-    Clipboard.setString(`${"ㅇ"}`);
+    if (!store.worker_public) return;
+    Clipboard.setString(`${store.worker_public}`);
     alert("주소 복사 완료");
   };
 
@@ -120,7 +121,7 @@ const styles = StyleSheet.create({
   rows: {
     marginTop: 20,
     flex: 10,
-    minHeight: 300,
+    minHeight: 100,
     height: "100%",
     flexDirection: "row",
     backgroundColor: "#FFCD4A",
