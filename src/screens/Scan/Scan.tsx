@@ -4,6 +4,8 @@ import { BarCodeScanner, BarCodeScannerResult } from "expo-barcode-scanner";
 import useStore from "../../../store";
 import axios from "axios";
 import { server } from "../../../util/const";
+import BarcodeMask from "react-native-barcode-mask";
+
 //택배 스캔
 export default function ScannerScreen() {
   const store = useStore();
@@ -44,57 +46,66 @@ export default function ScannerScreen() {
         }
       });
   };
+
   return (
     <View style={styles.container}>
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
-      />
-      <View style={styles.row}>
-        {scanned && (
-          <View style={styles.text_row}>
-            <Text style={styles.text}>id: {scannedData}</Text>
-            <Text style={styles.text}>보내는분: {parcel_list?.from_name}</Text>
-            <Text style={styles.text}>
-              보내는분 주소: {parcel_list?.from_address}
-            </Text>
-            <Text style={styles.text}>받는 분: {parcel_list?.to_name}</Text>
-            <Text style={styles.text}>
-              받는 분 주소: {parcel_list?.to_address}
-            </Text>
-            <Text style={styles.text}>진행현황: {parcel_list?.progress}</Text>
+      >
+        <BarcodeMask edgeColor="red" showAnimatedLine />
+
+        <View style={styles.row}>
+          {scanned && (
+            <View style={styles.text_row}>
+              <Text style={styles.text}>id: {scannedData}</Text>
+              <Text style={styles.text}>
+                보내는분: {parcel_list?.from_name}
+              </Text>
+              <Text style={styles.text}>
+                보내는분 주소: {parcel_list?.from_address}
+              </Text>
+              <Text style={styles.text}>받는 분: {parcel_list?.to_name}</Text>
+              <Text style={styles.text}>
+                받는 분 주소: {parcel_list?.to_address}
+              </Text>
+              <Text style={styles.text}>진행현황: {parcel_list?.progress}</Text>
+            </View>
+          )}
+        </View>
+        <View style={styles.row}></View>
+        <View style={styles.row}>
+          <View style={styles.button}>
+            <Button
+              color={"black"}
+              title={"Scan"}
+              onPress={() => setScanned(false)}
+            />
           </View>
-        )}
-      </View>
-      <View style={styles.row}></View>
-      <View style={styles.row}></View>
-      <View style={styles.row}>
-        <View style={styles.button}>
-          <Button
-            color={"black"}
-            title={"Scan"}
-            onPress={() => setScanned(false)}
-          />
+          <View style={styles.button}>
+            <Button
+              color={"black"}
+              title={"처리"}
+              onPress={() => update_parcel_progress()}
+            />
+          </View>
         </View>
-        <View style={styles.button}>
-          <Button
-            color={"black"}
-            title={"처리"}
-            onPress={() => update_parcel_progress()}
-          />
-        </View>
-      </View>
+      </BarCodeScanner>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    // backgroundColor: "rgba(0, 0, 0, 0.8)",
+    // backgroundColor: "blue",
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
   },
   row: {
+    // backgroundColor: "blue",
+
     flex: 1,
     justifyContent: "center",
     height: 20,
@@ -112,5 +123,29 @@ const styles = StyleSheet.create({
     textAlign: "center",
     justifyContent: "center",
     fontWeight: "bold",
+    zIndex: 21,
   },
+
+  outerRectangle: {
+    flex: 1,
+    justifyContent: "center", // Center the inner content vertically
+    backgroundColor: "rgba(1, 1, 1, 0.6)", // Opaque background color
+  },
+  centerTransparent: {
+    width: "70%",
+    aspectRatio: 1, // To maintain a square shape
+    alignItems: "center", // Center the inner rectangle horizontally
+    justifyContent: "center", // Center the inner rectangle vertically
+    backgroundColor: "transparent", // Transparent center
+  },
+  innerRectangle: {
+    width: "80%",
+    aspectRatio: 1, // To maintain a square shape
+    borderWidth: 1,
+    borderColor: "white", // Color of the inner rectangle's border
+    borderRadius: 10,
+    backgroundColor: "transparent", // Transparent inner rectangle
+  },
+
+  maskCenter: { flexDirection: "row" },
 });
