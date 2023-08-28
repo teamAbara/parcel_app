@@ -4,10 +4,10 @@
     "slug": "parcel_app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/parcel_logo.png",
+    "icon": "./assets/back.jpeg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/parcel_logo.png",
+      "image": "./assets/back.jpeg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,12 +17,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/parcel_logo.png",
+        "foregroundImage": "./assets/back.jpeg",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/parcel_logo.png"
+      "favicon": "./assets/back.jpeg"
     }
   }
 }

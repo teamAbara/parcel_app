@@ -73,7 +73,11 @@ export default function ScannerScreen() {
             </View>
           )}
         </View>
-        <View style={styles.row}></View>
+        <View style={styles.row}>
+          <Text style={{ color: "white", fontSize: 20 }}>
+            QrCode를 스캔하세요
+          </Text>
+        </View>
         <View style={styles.row}>
           <View style={styles.button}>
             <Button
@@ -112,8 +116,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     textAlign: "center",
   },
-  text_row: { height: 100, width: "100%", backgroundColor: "#FFCD4A" },
-  text: { width: "100%", textAlign: "center", fontWeight: "bold" },
+  text_row: {
+    marginTop: 10,
+    height: 120,
+    width: "100%",
+    backgroundColor: "rgba(1, 1, 1, 0.6)",
+  },
+  text: {
+    width: "100%",
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "white",
+    fontSize: 18,
+  },
   button: {
     backgroundColor: "#FFCD4A",
     width: 80,
