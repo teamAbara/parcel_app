@@ -8,6 +8,7 @@ import {
   RefreshControl,
   Clipboard,
   TouchableOpacity,
+  ImageBackground,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 //마이페이지
@@ -62,14 +63,19 @@ const ProfileScreen = ({ navigation }: any) => {
         <Text style={styles.head_text}>프로필</Text>
       </View>
       <View style={styles.rows}>
-        <View style={styles.rows2}>
-          <Text style={styles.text}>아이디:{store.worker_id}</Text>
+        <View style={{ flexDirection: "column", flex: 1, borderRadius: 100 }}>
+          <ImageBackground
+            style={{ width: 100, height: 100, borderRadius: 100 }}
+            source={require("../../../assets/img/profile.png")}
+          />
         </View>
-        <View style={styles.rows2}>
-          <Text>아이디</Text>
-        </View>
-        <View style={styles.rows2}>
-          <Text>아이디</Text>
+        <View style={{ flexDirection: "column", flex: 20 }}>
+          <View style={styles.rows2}>
+            <Text style={styles.text}>아이디:{store.worker_id}</Text>
+          </View>
+          <View style={styles.rows2}>
+            <Text style={styles.text}>전화번호:{store.worker_id}</Text>
+          </View>
         </View>
       </View>
       <View style={styles.header}>
@@ -91,7 +97,7 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     height: 100,
-    marginTop: 20,
+    marginTop: 0,
     flexDirection: "row",
     alignItems: "center",
     borderRadius: 40,
@@ -117,9 +123,9 @@ const styles = StyleSheet.create({
   rows: {
     marginTop: 10,
     flex: 10,
-    minHeight: 500,
+    minHeight: 100,
     height: "100%",
-    flexDirection: "column",
+    flexDirection: "row",
     backgroundColor: "#FFCD4A",
     justifyContent: "center",
     shadowColor: "#000",
@@ -129,15 +135,13 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.6,
     shadowRadius: 4.84,
-    borderRadius: 40,
+    borderRadius: 20,
   },
   rows2: {
     margin: 10,
     flex: 1,
-    minHeight: 10,
 
     flexDirection: "row",
-    backgroundColor: "red",
     justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -159,7 +163,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: "bold",
-    fontSize: 30,
+    fontSize: 20,
     color: "black",
     justifyContent: "center",
     alignItems: "center",

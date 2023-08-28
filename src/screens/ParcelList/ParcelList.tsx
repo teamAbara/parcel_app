@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useStore from "../../../store";
 import { server } from "../../../util/const";
-import { MaterialIcons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import {
   View,
@@ -21,10 +21,14 @@ const ParcelListScreen = ({ navigation }: any) => {
 
   //택배리스트 가져오기
   const fetchData = async () => {
-    await axios.post(`${server}/parcel/worker_parcel_list`).then(res => {
-      const data = res.data.arr; // Assuming the response already contains JSON data
-      store.setParcelList(data);
-    });
+    const worker_id = await AsyncStorage.getItem("worker_id");
+
+    await axios
+      .post(`${server}/parcel/worker_parcel_list`, { worker_id: worker_id })
+      .then(res => {
+        const data = res.data.arr; // Assuming the response already contains JSON data
+        store.setParcelList(data);
+      });
   };
 
   const onRefresh = () => {

@@ -31,12 +31,18 @@ const TabScreen = ({ navigation }: any) => {
     }
   };
   //할당 배송목록
+  //접속 아이디 서버로 보내기
   const fetchData = async () => {
-    await axios.post(`${server}/parcel/worker_parcel_list`).then(res => {
-      const data = res.data.arr; // Assuming the response already contains JSON data
-      store.setParcelList(data);
-      store.setParcelListCount(data.length);
-    });
+    const worker_id = await AsyncStorage.getItem("worker_id");
+    console.log(worker_id);
+    if (!worker_id) return;
+    await axios
+      .post(`${server}/parcel/worker_parcel_list`, { worker_id: worker_id })
+      .then(res => {
+        const data = res.data.arr; // Assuming the response already contains JSON data
+        store.setParcelList(data);
+        store.setParcelListCount(data.length);
+      });
   };
   //스캔 데이터
   const all_parcel_list_metadata = async () => {
