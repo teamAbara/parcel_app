@@ -42,7 +42,7 @@ const ParcelListScreen = ({ navigation }: any) => {
   useEffect(() => {
     fetchData();
   }, []);
-
+  console.log(store.parcel_list);
   return (
     <ScrollView
       style={styles.container}
@@ -133,9 +133,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "bold",
-    color: "white",
+    color: "black",
     flexDirection: "row",
   },
   head_text: {

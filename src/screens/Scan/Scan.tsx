@@ -38,6 +38,7 @@ export default function ScannerScreen({ navigation }: any) {
     await axios
       .post(`${server}/parcel/update_parcel_progress`, {
         worker_id: store.worker_id,
+        id: scannedData,
       })
       .then(res => {
         console.log(res);

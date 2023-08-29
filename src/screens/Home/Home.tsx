@@ -5,8 +5,8 @@ import {
   View,
   StyleSheet,
   ScrollView,
-  Clipboard,
   TouchableOpacity,
+  ImageBackground,
 } from "react-native";
 //홈
 import { MaterialIcons } from "@expo/vector-icons";
@@ -21,17 +21,57 @@ const HomeScreen = ({ navigation }: any) => {
     >
       <View style={styles.header}>
         <TouchableOpacity
-          style={styles.header_address}
+          style={{ flexDirection: "row", flex: 1 }}
           onPress={() => {
             //프로필 페이지로 이동
             navigation.navigate("Profile");
           }}
         >
-          <Text style={{ color: "black" }}>{store.worker_public}</Text>
+          <ImageBackground
+            style={{ width: 70, height: 70, borderRadius: 100, marginTop: 50 }}
+            source={require("../../../assets/img/profile.png")}
+          ></ImageBackground>
+          <View
+            style={{
+              flexDirection: "column",
+              flex: 4,
+              marginTop: 50,
+              marginLeft: 20,
+            }}
+          >
+            <Text
+              style={{
+                flexDirection: "row",
+                flex: 1,
+                color: "white",
+                fontSize: 20,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              {store.worker_address}
+            </Text>
+            <Text
+              style={{
+                flexDirection: "row",
+                flex: 1,
+                color: "white",
+                fontSize: 20,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              010-20953-604
+              {store.worker_phone}
+            </Text>
+          </View>
         </TouchableOpacity>
       </View>
+      <Text style={styles.lineStyle}> ─────────────────────────</Text>
+
       <View
         style={{
+          marginTop: 10,
           borderBottomColor: "black",
           borderBottomWidth: StyleSheet.hairlineWidth,
         }}
@@ -103,37 +143,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
-  header_address: {
-    flex: 14,
-    borderRadius: 10,
-    height: 30,
-    padding: 4,
-    textAlign: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#FFCD4A",
-    flexDirection: "column",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 1,
-      height: 3,
-    },
-    shadowOpacity: 0.6,
-    shadowRadius: 4.84,
-  },
-  header_profile: {
-    textAlign: "center",
 
-    flex: 2,
-    flexDirection: "column",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 1,
-      height: 3,
-    },
-    shadowOpacity: 0.6,
-    shadowRadius: 4.84,
-  },
   icon_button: {
     flex: 1,
     padding: 10,
@@ -162,12 +172,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4.84,
     borderRadius: 10,
   },
-  parcel_list_header: {
-    flex: 1,
-    marginTop: 20,
-    minHeight: 10,
-    flexDirection: "column",
-  },
+
   parcel_list_row: {
     flex: 1,
     flexDirection: "row",
@@ -187,6 +192,11 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 20,
     fontWeight: "bold",
+    color: "white",
+  },
+  lineStyle: {
+    borderWidth: 0.5,
+    margin: 10,
     color: "white",
   },
 });
