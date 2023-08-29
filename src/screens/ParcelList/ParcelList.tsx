@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import useStore from "../../../store";
 import { server } from "../../../util/const";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import {
   View,
@@ -54,9 +55,23 @@ const ParcelListScreen = ({ navigation }: any) => {
         style={{
           marginTop: 50,
           flexDirection: "row",
-          justifyContent: "center",
         }}
       >
+        <TouchableOpacity
+          onPress={e => {
+            navigation.navigate("Home");
+          }}
+        >
+          <Text
+            style={{
+              color: "white",
+
+              marginRight: 90,
+            }}
+          >
+            <MaterialIcons size={30} name="arrow-back-ios" color="white" />
+          </Text>
+        </TouchableOpacity>
         <Text style={styles.head_text}>택배 리스트</Text>
       </View>
       <View>

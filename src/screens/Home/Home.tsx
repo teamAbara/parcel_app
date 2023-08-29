@@ -9,6 +9,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 //홈
+import { MaterialIcons } from "@expo/vector-icons";
+
 const HomeScreen = ({ navigation }: any) => {
   const store = useStore();
 
@@ -68,22 +70,25 @@ const HomeScreen = ({ navigation }: any) => {
           </View>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={styles.rows}
-        onPress={e => {
-          navigation.navigate("Scan");
-        }}
-      >
-        <Text>스캔</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.rows}
-        onPress={e => {
-          navigation.navigate("Scan");
-        }}
-      >
-        <Text>리스트</Text>
-      </TouchableOpacity>
+      <View style={{ flexDirection: "row", marginTop: 20 }}>
+        <TouchableOpacity
+          style={styles.icon_button}
+          onPress={e => {
+            navigation.navigate("Scan");
+          }}
+        >
+          <MaterialIcons size={50} name="qr-code-scanner" color="black" />
+        </TouchableOpacity>
+        <View style={{ flexDirection: "column", width: 20 }} />
+        <TouchableOpacity
+          style={styles.icon_button}
+          onPress={e => {
+            navigation.navigate("ParcelList");
+          }}
+        >
+          <MaterialIcons size={50} name="format-list-bulleted" color="black" />
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };
@@ -132,6 +137,17 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.6,
     shadowRadius: 4.84,
+  },
+  icon_button: {
+    flex: 1,
+    padding: 10,
+    height: 160,
+    borderRadius: 10,
+    textAlign: "center",
+    flexDirection: "column",
+    backgroundColor: "#FFCD4A",
+    justifyContent: "center",
+    alignItems: "center",
   },
   rows: {
     marginTop: 20,

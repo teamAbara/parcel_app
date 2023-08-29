@@ -8,6 +8,8 @@ import { server } from "../../util/const";
 import useStore from "../../store";
 import { useEffect } from "react";
 import ScannerScreen from "../screens/Scan/Scan";
+import ParcelListScreen from "../screens/ParcelList/ParcelList";
+import ParcelListStack from "./ParcelList";
 function HomeStack({ navigation }: any) {
   const store = useStore();
   const Stack = createStackNavigator();
@@ -74,6 +76,13 @@ function HomeStack({ navigation }: any) {
       <Stack.Screen
         name="Scan"
         component={ScannerScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ParcelList"
+        component={ParcelListStack}
         options={{
           headerShown: false,
         }}
