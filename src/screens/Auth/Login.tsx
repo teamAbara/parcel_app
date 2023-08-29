@@ -27,7 +27,7 @@ const LoginScreen = ({ navigation }: any) => {
           setStorage("refreshToken", res.data.refresh_token);
           setStorage("worker_id", res.data.worker_id);
           setStorage("autoLogin", true);
-          navigation.navigate("Tab");
+          navigation.navigate("Home");
         }
       });
   };

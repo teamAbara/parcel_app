@@ -68,7 +68,22 @@ const HomeScreen = ({ navigation }: any) => {
           </View>
         </TouchableOpacity>
       </View>
-      <View style={styles.rows}></View>
+      <TouchableOpacity
+        style={styles.rows}
+        onPress={e => {
+          navigation.navigate("Scan");
+        }}
+      >
+        <Text>스캔</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.rows}
+        onPress={e => {
+          navigation.navigate("Scan");
+        }}
+      >
+        <Text>리스트</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };

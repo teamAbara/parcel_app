@@ -8,7 +8,8 @@ import MainScreen from "./src/screens/Main";
 import React from "react";
 import LoginScreen from "./src/screens/Auth/Login";
 import SignUpScreen from "./src/screens/Auth/SignUp";
-import TabScreen from "./src/screens/Tab";
+import HomeScreen from "./src/screens/Home/Home";
+import HomeStack from "./src/stack/Home";
 
 export default function App() {
   //stack
@@ -42,8 +43,8 @@ export default function App() {
           options={{
             headerShown: false,
           }}
-          name="Tab"
-          component={TabScreen}
+          name="Home"
+          component={HomeStack}
         />
       </Stack.Navigator>
     </NavigationContainer>

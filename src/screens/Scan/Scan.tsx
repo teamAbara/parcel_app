@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import { Text, View, StyleSheet, Button, TouchableOpacity } from "react-native";
 import { BarCodeScanner, BarCodeScannerResult } from "expo-barcode-scanner";
 import useStore from "../../../store";
 import axios from "axios";
 import { server } from "../../../util/const";
 import BarcodeMask from "react-native-barcode-mask";
+import { MaterialIcons } from "@expo/vector-icons";
 
 //택배 스캔
-export default function ScannerScreen() {
+export default function ScannerScreen({ navigation }: any) {
   const store = useStore();
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
   const [scanned, setScanned] = useState<boolean>(false);
@@ -56,22 +57,34 @@ export default function ScannerScreen() {
         <BarcodeMask edgeColor="red" showAnimatedLine />
 
         <View style={styles.row}>
-          {scanned && (
-            <View style={styles.text_row}>
-              <Text style={styles.text}>id: {scannedData}</Text>
-              <Text style={styles.text}>
-                보내는분: {parcel_list?.from_name}
-              </Text>
-              <Text style={styles.text}>
-                보내는분 주소: {parcel_list?.from_address}
-              </Text>
-              <Text style={styles.text}>받는 분: {parcel_list?.to_name}</Text>
-              <Text style={styles.text}>
-                받는 분 주소: {parcel_list?.to_address}
-              </Text>
-              <Text style={styles.text}>진행현황: {parcel_list?.progress}</Text>
-            </View>
-          )}
+          <TouchableOpacity
+            onPress={e => {
+              navigation.navigate("Home");
+            }}
+          >
+            <Text
+              style={{
+                color: "white",
+                paddingTop: 40,
+                paddingLeft: 80,
+                marginRight: 20,
+              }}
+            >
+              <MaterialIcons size={30} name="arrow-back-ios" color="white" />
+            </Text>
+          </TouchableOpacity>
+          <View style={styles.text_row}>
+            <Text style={styles.text}>id: {scannedData}</Text>
+            <Text style={styles.text}>보내는분: {parcel_list?.from_name}</Text>
+            <Text style={styles.text}>
+              보내는분 주소: {parcel_list?.from_address}
+            </Text>
+            <Text style={styles.text}>받는 분: {parcel_list?.to_name}</Text>
+            <Text style={styles.text}>
+              받는 분 주소: {parcel_list?.to_address}
+            </Text>
+            <Text style={styles.text}>진행현황: {parcel_list?.progress}</Text>
+          </View>
         </View>
         <View style={styles.row}>
           <Text style={{ color: "white", fontSize: 20 }}>
@@ -109,7 +122,7 @@ const styles = StyleSheet.create({
   },
   row: {
     // backgroundColor: "blue",
-
+    marginTop: 20,
     flex: 1,
     justifyContent: "center",
     height: 20,
@@ -117,14 +130,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   text_row: {
-    marginTop: 10,
+    marginTop: 30,
     height: 120,
     width: "100%",
     backgroundColor: "rgba(1, 1, 1, 0.6)",
   },
   text: {
     width: "100%",
-    textAlign: "center",
     fontWeight: "bold",
     color: "white",
     fontSize: 18,
