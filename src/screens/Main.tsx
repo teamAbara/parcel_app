@@ -16,7 +16,8 @@ const MainScreen = ({ navigation }: any) => {
   const getStorage = async () => {
     const token = await AsyncStorage.getItem("token");
     if (token != null || token != undefined) {
-      navigation.navigate("Tab");
+      //로그인 대있으면 홈으로 이동
+      navigation.navigate("Home");
     }
   };
   useEffect(() => {

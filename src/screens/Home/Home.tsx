@@ -10,16 +10,9 @@ import {
 } from "react-native";
 //홈
 import { MaterialIcons } from "@expo/vector-icons";
-
+//홈 스크린
 const HomeScreen = ({ navigation }: any) => {
   const store = useStore();
-
-  //주소 복사
-  const handleCopyText = () => {
-    if (!store.worker_public) return;
-    Clipboard.setString(`${store.worker_public}`);
-    alert("주소 복사 완료");
-  };
 
   return (
     <ScrollView
@@ -29,7 +22,10 @@ const HomeScreen = ({ navigation }: any) => {
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.header_address}
-          onPress={handleCopyText}
+          onPress={() => {
+            //프로필 페이지로 이동
+            navigation.navigate("Profile");
+          }}
         >
           <Text style={{ color: "black" }}>{store.worker_public}</Text>
         </TouchableOpacity>
@@ -164,7 +160,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.6,
     shadowRadius: 4.84,
-    borderRadius: 20,
+    borderRadius: 10,
   },
   parcel_list_header: {
     flex: 1,
@@ -189,7 +185,7 @@ const styles = StyleSheet.create({
   },
   parcel_list_text2: {
     textAlign: "center",
-    fontSize: 30,
+    fontSize: 20,
     fontWeight: "bold",
     color: "white",
   },

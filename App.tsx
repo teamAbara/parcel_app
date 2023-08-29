@@ -8,7 +8,6 @@ import MainScreen from "./src/screens/Main";
 import React from "react";
 import LoginScreen from "./src/screens/Auth/Login";
 import SignUpScreen from "./src/screens/Auth/SignUp";
-import HomeScreen from "./src/screens/Home/Home";
 import HomeStack from "./src/stack/Home";
 
 export default function App() {

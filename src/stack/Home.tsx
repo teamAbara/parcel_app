@@ -3,13 +3,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/Home/Home";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-
 import { server } from "../../util/const";
 import useStore from "../../store";
 import { useEffect } from "react";
 import ScannerScreen from "../screens/Scan/Scan";
-import ParcelListScreen from "../screens/ParcelList/ParcelList";
 import ParcelListStack from "./ParcelList";
+import ProfileScreen from "../screens/Profile/Profile";
 function HomeStack({ navigation }: any) {
   const store = useStore();
   const Stack = createStackNavigator();
@@ -83,6 +82,13 @@ function HomeStack({ navigation }: any) {
       <Stack.Screen
         name="ParcelList"
         component={ParcelListStack}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
         options={{
           headerShown: false,
         }}

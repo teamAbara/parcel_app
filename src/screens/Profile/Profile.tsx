@@ -10,6 +10,8 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 //마이페이지
 const ProfileScreen = ({ navigation }: any) => {
@@ -57,9 +59,23 @@ const ProfileScreen = ({ navigation }: any) => {
         style={{
           marginTop: 50,
           flexDirection: "row",
-          justifyContent: "center",
         }}
       >
+        <TouchableOpacity
+          onPress={e => {
+            navigation.navigate("Home");
+          }}
+        >
+          <Text
+            style={{
+              color: "white",
+
+              marginRight: 120,
+            }}
+          >
+            <MaterialIcons size={30} name="arrow-back-ios" color="white" />
+          </Text>
+        </TouchableOpacity>
         <Text style={styles.head_text}>프로필</Text>
       </View>
       <View style={styles.rows}>
@@ -133,7 +149,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4.84,
   },
   rows: {
-    marginTop: 10,
+    marginTop: 40,
     flex: 10,
     minHeight: 100,
     height: "100%",
