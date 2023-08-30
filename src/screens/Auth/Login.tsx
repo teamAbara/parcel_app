@@ -62,7 +62,7 @@ const LoginScreen = ({ navigation }: any) => {
           style={{ textAlign: "center", fontWeight: "bold" }}
           onPress={login}
         >
-          Login
+          로그인
         </Text>
       </TouchableOpacity>
     </View>
