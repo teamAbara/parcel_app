@@ -241,7 +241,6 @@ const styles = StyleSheet.create({
     color: "white",
   },
   lineStyle: {
-    borderWidth: 0.5,
     margin: 10,
     color: "white",
   },
