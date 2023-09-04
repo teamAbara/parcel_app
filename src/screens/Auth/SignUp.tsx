@@ -35,8 +35,6 @@ const SignUpScreen = ({ navigation }: any) => {
 
   const [worker_address, setWorkerAddress] = useState(""); //가입 위치
 
-  const phoneRef = useRef();
-
   // 휴대폰 번호 입력 함수
   const handlePhone = (value: any) => {
     const numberLength = 11;

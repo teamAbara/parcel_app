@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ImageBackground,
+  Image,
 } from "react-native";
 //홈
 import { MaterialIcons } from "@expo/vector-icons";
@@ -67,7 +68,6 @@ const HomeScreen = ({ navigation }: any) => {
         </TouchableOpacity>
       </View>
       <Text style={styles.lineStyle}> ───────────────────────</Text>
-
       <View
         style={{
           marginTop: 10,
@@ -150,6 +150,27 @@ const HomeScreen = ({ navigation }: any) => {
               공지사항
             </Text>
           </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            backgroundColor: "#FFCD4A",
+            marginTop: 20,
+            flex: 10,
+            shadowOpacity: 0.6,
+            shadowRadius: 4.84,
+            borderRadius: 10,
+          }}
+        >
+          <Image
+            style={{
+              width: "90%",
+              padding: 40,
+              height: 30,
+              margin: 10,
+              borderRadius: 10,
+            }}
+            source={require("../../../assets/img/footer.jpeg")}
+          ></Image>
         </TouchableOpacity>
       </View>
     </ScrollView>

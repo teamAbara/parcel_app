@@ -174,8 +174,8 @@ const styles = StyleSheet.create({
   rows2: {
     margin: 10,
     flex: 1,
+    marginLeft: 100,
     flexDirection: "row",
-    justifyContent: "center",
     shadowColor: "#000",
     shadowOffset: {
       width: 1,

@@ -34,7 +34,7 @@ export default function ScannerScreen({ navigation }: any) {
 
   //스캔에서 리스트 가져오기
   const parcel_list = store?.all_parcel_list[Number(scannedData) - 1];
-
+  //
   const update_parcel_progress = async () => {
     if (!store.worker_id) return;
     await axios
@@ -75,16 +75,70 @@ export default function ScannerScreen({ navigation }: any) {
             </Text>
           </TouchableOpacity>
           <View style={styles.text_row}>
-            <Text style={styles.text}>id: {scannedData}</Text>
-            <Text style={styles.text}>보내는분: {parcel_list?.from_name}</Text>
+            <View
+              style={{
+                backgroundColor: "#FFCD4A",
+                width: 100,
+                borderRadius: 10,
+                height: 30,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 22,
+                  color: "black",
+                  textAlign: "center",
+                }}
+              >
+                보내는분
+              </Text>
+            </View>
+            <Text style={styles.text}>성함: {parcel_list?.from_name}</Text>
             <Text style={styles.text}>
-              보내는분 주소: {parcel_list?.from_address}
+              연락처: {parcel_list?.from_phone_number}
             </Text>
-            <Text style={styles.text}>받는 분: {parcel_list?.to_name}</Text>
+            <Text style={styles.text}>주소: {parcel_list?.from_address}</Text>
+            <View
+              style={{
+                height: 30,
+                backgroundColor: "#FFCD4A",
+                width: 100,
+                borderRadius: 10,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 22,
+                  color: "black",
+                  textAlign: "center",
+                }}
+              >
+                받는 분
+              </Text>
+            </View>
+            <Text style={styles.text}>성함: {parcel_list?.to_name}</Text>
             <Text style={styles.text}>
-              받는 분 주소: {parcel_list?.to_address}
+              연락처: {parcel_list?.to_phone_number}
             </Text>
-            <Text style={styles.text}>진행현황: {parcel_list?.progress}</Text>
+            <Text style={styles.text}>주소: {parcel_list?.to_address}</Text>
+            <View
+              style={{
+                height: 30,
+                backgroundColor: "#FFCD4A",
+                width: 260,
+                borderRadius: 10,
+              }}
+            >
+              <Text
+                style={{
+                  fontSize: 22,
+                  color: "black",
+                  textAlign: "center",
+                }}
+              >
+                {parcel_list?.requst == null ? "요청사항" : parcel_list?.requst}
+              </Text>
+            </View>
           </View>
         </View>
         <View style={styles.row}>
@@ -132,7 +186,7 @@ const styles = StyleSheet.create({
   },
   text_row: {
     marginTop: 30,
-    height: 120,
+    height: 150,
     width: "100%",
     backgroundColor: "rgba(1, 1, 1, 0.6)",
   },
