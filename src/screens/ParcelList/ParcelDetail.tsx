@@ -27,12 +27,20 @@ const ParcelDetailScreen = ({ route, navigation }: any) => {
         </TouchableOpacity>
       </View>
       <View style={styles.rows}>
-        <View style={styles.column}>
-          <Text style={styles.text}>보낸 분 : {to_name}</Text>
-          <Text style={styles.text}>보낸 분 주소 : {from_address}</Text>
-          <Text style={styles.text}>받는 분 : {to_name}</Text>
-          <Text style={styles.text}>받는 분 주소 : {to_address}</Text>
-        </View>
+        <Text style={styles.textHeadre}>보낸 분</Text>
+        <Text style={styles.text}>성함: {to_name}</Text>
+        <Text style={styles.text}>주소 : {from_address}</Text>
+        <Text style={styles.text}>연락처 : </Text>
+
+        <Text style={styles.textHeadre}>받는 분</Text>
+        <Text style={styles.text}>성함 : {to_name}</Text>
+        <Text style={styles.text}>주소 : {to_address}</Text>
+        <Text style={styles.text}>연락처 : {from_address}</Text>
+
+        <Text style={styles.textHeadre}>물품</Text>
+        <Text style={styles.text}>연락처 : </Text>
+        <Text style={styles.text}>연락처 : </Text>
+        <Text style={styles.text}>연락처 : </Text>
       </View>
     </ScrollView>
   );
@@ -50,32 +58,22 @@ const styles = StyleSheet.create({
   rows: {
     marginTop: 10,
     flex: 10,
-    height: 500,
-    flexDirection: "row",
+    height: 700,
+    flexDirection: "column",
     backgroundColor: "#FFCD4A",
-    alignItems: "center",
-    justifyContent: "center",
     borderRadius: 30,
   },
-  column: {
-    flex: 1,
-    flexDirection: "column",
-    textAlign: "center",
-    justifyContent: "center",
-  },
+
   text: {
     marginTop: 20,
     marginLeft: 20,
     fontSize: 15,
-
     fontWeight: "bold",
   },
-  head_text: {
-    textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold",
-    color: "white",
-    justifyContent: "center",
-    alignItems: "center",
+
+  textHeadre: {
+    fontSize: 40,
+    marginTop: 20,
+    marginLeft: 20,
   },
 });

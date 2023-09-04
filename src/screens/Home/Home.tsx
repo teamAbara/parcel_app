@@ -61,13 +61,12 @@ const HomeScreen = ({ navigation }: any) => {
                 alignItems: "center",
               }}
             >
-              010-20953-604
               {store.worker_phone}
             </Text>
           </View>
         </TouchableOpacity>
       </View>
-      <Text style={styles.lineStyle}> ─────────────────────────</Text>
+      <Text style={styles.lineStyle}> ───────────────────────</Text>
 
       <View
         style={{
@@ -77,9 +76,6 @@ const HomeScreen = ({ navigation }: any) => {
         }}
       />
       <View>
-        <Text style={styles.parcel_list_text}>배송내용</Text>
-      </View>
-      <View>
         <TouchableOpacity
           style={styles.rows}
           onPress={e => {
@@ -87,6 +83,10 @@ const HomeScreen = ({ navigation }: any) => {
           }}
         >
           <View style={{ flex: 1, padding: 10, flexDirection: "column" }}>
+            <Text style={{ color: "white", fontSize: 25, marginLeft: 10 }}>
+              현황
+            </Text>
+
             <View style={styles.parcel_list_row}>
               <View style={styles.parcel_list_column}>
                 <Text style={styles.parcel_list_text2}>미 완료</Text>
@@ -113,7 +113,16 @@ const HomeScreen = ({ navigation }: any) => {
             navigation.navigate("Scan");
           }}
         >
-          <MaterialIcons size={50} name="qr-code-scanner" color="black" />
+          <Text style={{ color: "white", fontSize: 25, marginLeft: 10 }}>
+            스캔
+          </Text>
+          <Text style={{ fontSize: 15, marginLeft: 10 }}>바로가기</Text>
+          <MaterialIcons
+            style={{ marginLeft: "50%" }}
+            size={50}
+            name="qr-code-scanner"
+            color="black"
+          />
         </TouchableOpacity>
         <View style={{ flexDirection: "column", width: 20 }} />
         <TouchableOpacity
@@ -122,7 +131,25 @@ const HomeScreen = ({ navigation }: any) => {
             navigation.navigate("ParcelList");
           }}
         >
-          <MaterialIcons size={50} name="format-list-bulleted" color="black" />
+          <Text style={{ color: "white", fontSize: 25, marginLeft: 10 }}>
+            배송 목록
+          </Text>
+          <Text style={{ fontSize: 15, marginLeft: 10 }}>바로가기</Text>
+          <MaterialIcons
+            style={{ marginLeft: "50%" }}
+            size={50}
+            name="format-list-bulleted"
+            color="black"
+          />
+        </TouchableOpacity>
+      </View>
+      <View>
+        <TouchableOpacity style={styles.rows}>
+          <View style={{ flex: 1, padding: 10, flexDirection: "column" }}>
+            <Text style={{ color: "white", fontSize: 25, marginLeft: 10 }}>
+              공지사항
+            </Text>
+          </View>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -133,7 +160,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 25,
     backgroundColor: "#091140",
   },
   header: {
@@ -149,11 +176,9 @@ const styles = StyleSheet.create({
     padding: 10,
     height: 160,
     borderRadius: 10,
-    textAlign: "center",
-    flexDirection: "column",
+
     backgroundColor: "#FFCD4A",
     justifyContent: "center",
-    alignItems: "center",
   },
   rows: {
     marginTop: 20,

@@ -20,6 +20,8 @@ const MainScreen = ({ navigation }: any) => {
       navigation.navigate("Home");
     }
   };
+
+  //page이동할떄마다 렌더링
   useEffect(() => {
     getStorage();
   }, [page]);

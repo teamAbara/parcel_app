@@ -81,7 +81,13 @@ const ProfileScreen = ({ navigation }: any) => {
       <View style={styles.rows}>
         <View style={{ flexDirection: "column", flex: 1, borderRadius: 100 }}>
           <ImageBackground
-            style={{ width: 100, height: 100, borderRadius: 100 }}
+            style={{
+              width: 80,
+              height: 80,
+              borderRadius: 100,
+              marginTop: 10,
+              marginLeft: 20,
+            }}
             source={require("../../../assets/img/profile.png")}
           />
         </View>

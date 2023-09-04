@@ -31,6 +31,8 @@ export default function ScannerScreen({ navigation }: any) {
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+
+  //스캔에서 리스트 가져오기
   const parcel_list = store?.all_parcel_list[Number(scannedData) - 1];
 
   const update_parcel_progress = async () => {
@@ -41,8 +43,6 @@ export default function ScannerScreen({ navigation }: any) {
         id: scannedData,
       })
       .then(res => {
-        console.log(res);
-        console.log(res.data);
         if (res.data.result == true) {
           alert("sucess");
         }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, ChangeEvent } from "react";
 import {
   Text,
   View,
@@ -35,6 +35,23 @@ const SignUpScreen = ({ navigation }: any) => {
 
   const [worker_address, setWorkerAddress] = useState(""); //가입 위치
 
+  const phoneRef = useRef();
+
+  // 휴대폰 번호 입력 함수
+  const handlePhone = (value: any) => {
+    const numberLength = 11;
+
+    let result = "";
+
+    for (let i = 0; i < value.length && i < numberLength; i++) {
+      if (i === 3 || i === 7) {
+        result += "-";
+      }
+      result += value[i];
+    }
+
+    setWorkerPhone(result);
+  };
   //서버에 회원가입 요청
   const sign_up = async () => {
     await axios
@@ -42,6 +59,7 @@ const SignUpScreen = ({ navigation }: any) => {
         worker_id: worker_id,
         worker_pw: worker_pw,
         worker_address: worker_address,
+        worker_phone: worker_phone,
       })
       .then(res => {
         if (res.data.result == true) {
@@ -80,7 +98,7 @@ const SignUpScreen = ({ navigation }: any) => {
       <TextInput
         placeholder="전화번호"
         style={styles.input}
-        onChangeText={setWorkerPhone}
+        onChangeText={value => handlePhone(value.replace(/\D+/g, ""))}
         value={worker_phone}
       />
       <SelectDropdown

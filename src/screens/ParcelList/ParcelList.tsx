@@ -11,6 +11,7 @@ import {
   RefreshControl,
   Text,
   TouchableOpacity,
+  Button,
 } from "react-native";
 import axios from "axios";
 
@@ -76,23 +77,40 @@ const ParcelListScreen = ({ navigation }: any) => {
       </View>
       <View>
         {store.parcel_list.map((item: any) => (
-          <View style={styles.rows}>
+          <TouchableOpacity
+            style={styles.rows}
+            onPress={e => {
+              navigation.navigate("ParcelDetail", {
+                id: 86,
+                from_name: item.from_name,
+                from_address: item.from_address,
+                to_name: item.to_name,
+                to_address: item.to_address,
+              });
+            }}
+          >
+            <View style={{ marginTop: 20, marginLeft: 20 }}>
+              <Text style={{ fontSize: 15 }}>배송지: {item.from_address}</Text>
+            </View>
             <TouchableOpacity
-              onPress={e => {
-                navigation.navigate("ParcelDetail", {
-                  id: 86,
-                  from_name: item.from_name,
-                  from_address: item.from_address,
-                  to_name: item.to_name,
-                  to_address: item.to_address,
-                });
+              style={{
+                backgroundColor: "white",
+                flexDirection: "row",
+                width: "20%",
+                marginLeft: 20,
+                alignItems: "center",
+                justifyContent: "center",
+                alignContent: "center",
+                height: 30,
+                marginTop: 20,
+                borderRadius: 8,
               }}
             >
-              <Text style={styles.parcel_list}>
-                배송지: {item.from_address}
-              </Text>
-              <Text style={styles.parcel_list}>
-                현황:{" "}
+              <Text
+                style={{
+                  padding: 8,
+                }}
+              >
                 {item.progress == "1"
                   ? "집화처리"
                   : item.progress == "2"
@@ -104,7 +122,7 @@ const ParcelListScreen = ({ navigation }: any) => {
                   : "배송 완료"}
               </Text>
             </TouchableOpacity>
-          </View>
+          </TouchableOpacity>
         ))}
       </View>
     </ScrollView>
@@ -120,24 +138,14 @@ const styles = StyleSheet.create({
   },
 
   rows: {
+    flexDirection: "column",
     marginTop: 10,
     flex: 1,
     height: 100,
-
     backgroundColor: "#FFCD4A",
-    alignItems: "center",
     borderRadius: 20,
   },
-  parcel_list: {
-    marginTop: 15,
-    alignItems: "center",
-    justifyContent: "center",
-    flex: 1,
-    fontSize: 15,
-    fontWeight: "bold",
-    color: "black",
-    flexDirection: "row",
-  },
+
   head_text: {
     textAlign: "center",
     fontSize: 30,
