@@ -84,8 +84,17 @@ const ParcelListScreen = ({ navigation }: any) => {
                 id: 86,
                 from_name: item.from_name,
                 from_address: item.from_address,
+                from_phone_number: item.from_phone_number,
                 to_name: item.to_name,
                 to_address: item.to_address,
+                to_phone_number: item.to_phone_number,
+                item_name: item.item_name,
+                requst: item.requst,
+                box_size: item.box_size,
+                item_type: item.item_type,
+                parcel_price: item.parcel_price,
+                worker_type: item.worker_type,
+                box_num: item.box_num,
               });
             }}
           >
